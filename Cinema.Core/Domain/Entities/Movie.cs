@@ -4,6 +4,10 @@ namespace Cinema.Core.Domain.Entities
 {
     public class Movie
     {
+        public Movie()
+        {
+            seances = new HashSet<Seance>();
+        }
         public int Id { get; set; }
         public string Name { get; set; } = null!;
         public string Description { get; set; } = null!;
@@ -12,9 +16,7 @@ namespace Cinema.Core.Domain.Entities
         public string Genre { get; set; } = null!;
         public DateTime Duration { get; set; }
         public double Rating { get; set; }
-        public int SeanceId {  get; set; }
-        [ForeignKey(nameof(SeanceId))]
-        public Seance? seance { get; set; }
+        public ICollection<Seance> seances { get; set; }
 
     }
 }

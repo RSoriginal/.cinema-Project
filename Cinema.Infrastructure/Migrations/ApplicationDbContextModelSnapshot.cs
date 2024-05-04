@@ -146,16 +146,11 @@ namespace Cinema.Infrastructure.Migrations
                     b.Property<double>("Rating")
                         .HasColumnType("float");
 
-                    b.Property<int>("SeanceId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Trailers")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("SeanceId");
 
                     b.ToTable("Movies");
                 });
@@ -349,17 +344,6 @@ namespace Cinema.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Cinema.Core.Domain.Entities.Movie", b =>
-                {
-                    b.HasOne("Cinema.Core.Domain.Entities.Seance", "seance")
-                        .WithMany()
-                        .HasForeignKey("SeanceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("seance");
-                });
-
             modelBuilder.Entity("Cinema.Core.Domain.Entities.Proposition", b =>
                 {
                     b.HasOne("Cinema.Core.Domain.Entities.CinemaUser", null)
@@ -378,7 +362,7 @@ namespace Cinema.Infrastructure.Migrations
             modelBuilder.Entity("Cinema.Core.Domain.Entities.Seance", b =>
                 {
                     b.HasOne("Cinema.Core.Domain.Entities.Movie", "movie")
-                        .WithMany()
+                        .WithMany("seances")
                         .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -461,6 +445,11 @@ namespace Cinema.Infrastructure.Migrations
                     b.Navigation("propositions");
 
                     b.Navigation("tickets");
+                });
+
+            modelBuilder.Entity("Cinema.Core.Domain.Entities.Movie", b =>
+                {
+                    b.Navigation("seances");
                 });
 
             modelBuilder.Entity("Cinema.Core.Domain.Entities.Seance", b =>
