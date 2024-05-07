@@ -7,10 +7,10 @@ namespace Cinema.Core.Domain.Entities
     {
         public CinemaUser()
         {
-            tickets = new HashSet<Ticket> ();
-            propositions = new HashSet<Proposition> ();
+            Tickets = new HashSet<Ticket> ();
+            Propositions = new HashSet<Proposition> ();
         }
-        public ICollection<Ticket> tickets { get; private set; }        
-        public ICollection<Proposition> propositions { get; private set; }
+        public ICollection<Ticket> Tickets { get; private set; }        
+        public ICollection<Proposition> Propositions { get; private set; }
     }
 }

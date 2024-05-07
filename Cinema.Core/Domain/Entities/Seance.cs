@@ -6,14 +6,14 @@ namespace Cinema.Core.Domain.Entities
     {
         public Seance()
         {
-            tickets = new HashSet<Ticket>();            
+            Tickets = new HashSet<Ticket>();            
         }
         public int Id { get; set; }
         public int MaxTickets { get; set; }
         public DateTime AssignedAt { get; set; }
         public int MovieId { get;set; }
         [ForeignKey(nameof(MovieId))]
-        public Movie? movie { get; set; }
-        public ICollection<Ticket> tickets { get; set; }
+        public Movie? Movie { get; set; }
+        public ICollection<Ticket> Tickets { get; set; }
     }
 }
