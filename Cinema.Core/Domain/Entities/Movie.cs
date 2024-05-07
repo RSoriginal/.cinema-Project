@@ -6,7 +6,7 @@ namespace Cinema.Core.Domain.Entities
     {
         public Movie()
         {
-            seances = new HashSet<Seance>();
+            Seances = new HashSet<Seance>();
         }
         public int Id { get; set; }
         public string Name { get; set; } = null!;
@@ -16,7 +16,7 @@ namespace Cinema.Core.Domain.Entities
         public string Genre { get; set; } = null!;
         public DateTime Duration { get; set; }
         public double Rating { get; set; }
-        public ICollection<Seance> seances { get; set; }
+        public ICollection<Seance> Seances { get; set; }
 
     }
 }

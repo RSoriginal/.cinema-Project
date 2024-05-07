@@ -9,6 +9,10 @@ namespace Cinema.Core.Domain.DTO.Movie
 {
     public class MovieUpdateRequest
     {
+        public MovieUpdateRequest()
+        {
+        }
+
         public MovieUpdateRequest(string name, string desc, string trailers, string actors, string genre, DateTime duration, double rating)
         {
             Name = name;
@@ -20,6 +24,7 @@ namespace Cinema.Core.Domain.DTO.Movie
             Rating = rating;
         }
 
+        public int Id { get; set; }
         public string Name { get; set; } = null!;
         public string Description { get; set; } = null!;
         public string Trailers { get; set; } = null!;
@@ -32,6 +37,7 @@ namespace Cinema.Core.Domain.DTO.Movie
         {
             var movie = new Entities.Movie()
             {
+                Id = this.Id,
                 Name = this.Name,
                 Description = this.Description,
                 Actors = this.Actors,

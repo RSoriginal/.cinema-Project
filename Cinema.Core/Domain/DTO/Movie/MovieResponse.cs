@@ -37,7 +37,7 @@ namespace Cinema.Core.Domain.DTO.Movie
                 Trailers = movie.Trailers
             };
 
-            foreach (var seance in movie.seances)
+            foreach (var seance in movie.Seances)
             {
                 movieResponse.Seances.Add(seance);
             }

@@ -11,7 +11,7 @@ using StoreUI.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection2") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection2") ?? throw new InvalidOperationException("Connection string not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
@@ -21,8 +21,7 @@ builder.Services.AddIdentity<CinemaUser, CinemaRole>(options =>
 { 
     options.SignIn.RequireConfirmedAccount = true; 
     options.SignIn.RequireConfirmedEmail = false; 
-}).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
-builder.Services.AddControllersWithViews();
+}).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders().AddDefaultUI();
 
 builder.Services.AddRazorPages();
 builder.Services.AddTransient<IMovieService, MovieService>();
@@ -58,6 +57,7 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.AccessDeniedPath = $"/Home";
     options.ExpireTimeSpan = TimeSpan.FromDays(1);
 });
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
@@ -69,7 +69,7 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    // The default HSTS value is 30 days.
     app.UseHsts();
 }
 
@@ -80,15 +80,19 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
   name: "Admin",
   pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}"
 );
 
+app.MapControllerRoute(
+name: "default",
+pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
+
 app.MapRazorPages();
+
 
 app.Run();

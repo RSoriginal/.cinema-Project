@@ -12,6 +12,10 @@ namespace Cinema.Core.Domain.DTO.Movie
 {
     public class MovieAddRequest
     {
+        public MovieAddRequest()
+        {
+        }
+
         public MovieAddRequest(string name, string desc, string trailers, string actors, string genre, DateTime duration, double rating) {
             Name = name;
             Description = desc;
@@ -45,7 +49,7 @@ namespace Cinema.Core.Domain.DTO.Movie
 
             foreach (var seance in Seances)
             {
-                movie.seances.Add(seance);
+                movie.Seances.Add(seance);
             }
             return movie;
         }

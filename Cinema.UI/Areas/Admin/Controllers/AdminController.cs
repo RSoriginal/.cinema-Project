@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Cinema.UI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         public IActionResult Index()

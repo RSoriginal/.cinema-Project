@@ -20,12 +20,12 @@ namespace Cinema.UI.Services
         {
             var dbMovie = movie.ToMovie();
             var seances = new List<Seance>();
-            seances.AddRange(dbMovie.seances.ToList());
-            dbMovie.seances.Clear();
+            seances.AddRange(dbMovie.Seances.ToList());
+            dbMovie.Seances.Clear();
 
             foreach (var i in seances)
             {
-                dbMovie.seances.Add(_context.seances.Where(x => x.MaxTickets == i.MaxTickets && x.AssignedAt == i.AssignedAt).First());
+                dbMovie.Seances.Add(_context.seances.Where(x => x.MaxTickets == i.MaxTickets && x.AssignedAt == i.AssignedAt).First());
             }
             await _context.Movies.AddAsync(dbMovie);
             await _context.SaveChangesAsync();
@@ -40,14 +40,14 @@ namespace Cinema.UI.Services
 
         public async Task<MovieResponse> GetMovieAsync(int id)
         {
-            var context = _context.Movies.Include(x => x.seances);
+            var context = _context.Movies.Include(x => x.Seances);
             var movie = await context.FirstOrDefaultAsync() ?? throw new ArgumentException($"Not possible to find a product by id:{id}", nameof(id));
             return movie.ToMovieResponse();
         }
 
         public async Task<ICollection<MovieResponse>> GetMoviesAsync()
         {
-            var context = _context.Movies.Include(x => x.seances);
+            var context = _context.Movies.Include(x => x.Seances);
             return await context.Select(x => x.ToMovieResponse()).ToListAsync();
         }
 
