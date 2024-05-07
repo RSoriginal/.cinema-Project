@@ -3,6 +3,7 @@ namespace Cinema.Core.Domain.DTO.Ticket
 {
     public class TicketUpdateRequest
     {
+        public TicketUpdateRequest() {}
         public TicketUpdateRequest(int seatNumber, decimal price, bool isAvailable, int seanceId, Guid userId) 
         {
             SeatNumber = seatNumber;
@@ -11,6 +12,7 @@ namespace Cinema.Core.Domain.DTO.Ticket
             SeanceId = seanceId;
             UserId = userId;
         }
+        public int Id { get; set; }
         public int SeatNumber { get; set; }
         public decimal Price { get; set; }
         public bool IsAvailable { get; set; }
@@ -22,6 +24,7 @@ namespace Cinema.Core.Domain.DTO.Ticket
         {
             return new Entities.Ticket()
             {
+                Id = this.Id,
                 SeatNumber = this.SeatNumber,
                 Price = this.Price,
                 IsAvailable = this.IsAvailable,
