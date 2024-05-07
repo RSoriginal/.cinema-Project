@@ -1,5 +1,4 @@
-﻿using Cinema.Core.Domain.DTO;
-using Cinema.Core.Domain.DTO.Ticket;
+﻿using Cinema.Core.Domain.DTO.Ticket;
 using Cinema.Infrastructure.DBContext;
 using Microsoft.EntityFrameworkCore;
 

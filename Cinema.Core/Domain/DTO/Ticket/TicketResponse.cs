@@ -12,9 +12,7 @@ namespace Cinema.Core.Domain.DTO.Ticket
         public decimal Price { get; set; }
         public bool IsAvailable { get; set; }
         public int SeanceId { get; set; }
-        public Seance? Seance { get; set; }
         public Guid UserId { get; set; }
-        public CinemaUser? User { get; set; }
 
         public override bool Equals(object? obj)
         {
@@ -49,9 +47,7 @@ namespace Cinema.Core.Domain.DTO.Ticket
                 Price = ticket.Price,
                 IsAvailable = ticket.IsAvailable,
                 SeanceId = ticket.SeanceId,
-                Seance = ticket.Seance,
-                UserId = ticket.UserId,
-                User = ticket.User
+                UserId = ticket.UserId
             };
         }
     }
