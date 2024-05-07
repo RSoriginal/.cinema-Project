@@ -9,6 +9,6 @@ namespace Cinema.Core.Domain.Entities
         public decimal Discount { get; set; }
         public int MovieId {  get; set; }
         [ForeignKey(nameof(MovieId))]
-        public Movie? movie { get; set; }
+        public Movie? Movie { get; set; }
     }
 }
