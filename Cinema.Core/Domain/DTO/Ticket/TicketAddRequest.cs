@@ -2,6 +2,15 @@
 {
     public class TicketAddRequest
     {
+        public TicketAddRequest(int seatNumber, decimal price, bool isAvailable, int seanceId, Guid userId)
+        {
+            SeatNumber = seatNumber;
+            Price = price;
+            IsAvailable = isAvailable;
+            SeanceId = seanceId;
+            UserId = userId;
+        }
+
         public int SeatNumber { get; set; }
         public decimal Price { get; set; }
         public bool IsAvailable { get; set; }

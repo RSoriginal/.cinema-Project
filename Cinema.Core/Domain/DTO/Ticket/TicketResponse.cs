@@ -1,24 +1,20 @@
-﻿using Cinema.Core.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
+﻿using System.Text.Json;
+using Cinema.Core.Domain.Entities;
 
 namespace Cinema.Core.Domain.DTO.Ticket
 {
     public class TicketResponse
     {
+        public TicketResponse() { }
+        
         public int Id { get; set; }
         public int SeatNumber { get; set; }
         public decimal Price { get; set; }
         public bool IsAvailable { get; set; }
         public int SeanceId { get; set; }
-        //public Seance? Seance { get; set; }
+        public Seance? Seance { get; set; }
         public Guid UserId { get; set; }
-        //public CinemaUser? User { get; set; }
+        public CinemaUser? User { get; set; }
 
         public override bool Equals(object? obj)
         {
@@ -53,7 +49,9 @@ namespace Cinema.Core.Domain.DTO.Ticket
                 Price = ticket.Price,
                 IsAvailable = ticket.IsAvailable,
                 SeanceId = ticket.SeanceId,
-                UserId = ticket.UserId
+                Seance = ticket.Seance,
+                UserId = ticket.UserId,
+                User = ticket.User
             };
         }
     }

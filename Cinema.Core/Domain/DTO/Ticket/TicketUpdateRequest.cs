@@ -1,14 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Cinema.Core.Domain.DTO.Ticket
 {
     public class TicketUpdateRequest
     {
-        public int Id { get; set; }
+        public TicketUpdateRequest(int seatNumber, decimal price, bool isAvailable, int seanceId, Guid userId) 
+        {
+            SeatNumber = seatNumber;
+            Price = price;
+            IsAvailable = isAvailable;
+            SeanceId = seanceId;
+            UserId = userId;
+        }
         public int SeatNumber { get; set; }
         public decimal Price { get; set; }
         public bool IsAvailable { get; set; }
@@ -20,7 +22,6 @@ namespace Cinema.Core.Domain.DTO.Ticket
         {
             return new Entities.Ticket()
             {
-                Id = this.Id,
                 SeatNumber = this.SeatNumber,
                 Price = this.Price,
                 IsAvailable = this.IsAvailable,

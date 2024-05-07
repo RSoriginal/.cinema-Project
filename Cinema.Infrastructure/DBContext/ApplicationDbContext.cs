@@ -16,7 +16,7 @@ namespace Cinema.Infrastructure.DBContext
         public DbSet<Movie> Movies { get; set; } = null!;
         public DbSet<Proposition> propositions { get; set; } = null!;
         public DbSet<Seance> seances { get; set; } = null!;
-        public DbSet<Ticket> tickets { get; set; } = null!;
+        public DbSet<Ticket> Tickets { get; set; } = null!;
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
