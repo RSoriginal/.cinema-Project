@@ -9,5 +9,6 @@ namespace Cinema.Core.Domain.Entities
 {
     public class CinemaRole : IdentityRole<Guid>
     {
+        public CinemaRole(string name) { this.Name = name; }
     }
 }
