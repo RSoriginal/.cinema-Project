@@ -14,7 +14,7 @@ namespace Cinema.Core.Domain.DTO.Propositions
         public string Description { get; set; } = null!;
         public decimal Discount { get; set; }
         public int MovieId { get; set; }
-
+        public Guid UserId { get; set; }
 
         public PropositionAddRequest(string description, decimal discount, int movieId)
         {
@@ -25,14 +25,14 @@ namespace Cinema.Core.Domain.DTO.Propositions
 
         public Proposition ToProposition()
         {
-            var proposition = new Proposition()
+            var prop = new Proposition()
             {
                 Description = this.Description,
                 Discount = this.Discount,
                 MovieId = this.MovieId
             };  
             
-            return proposition;
+            return prop;
         }
     }
 }

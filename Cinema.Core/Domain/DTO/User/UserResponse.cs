@@ -22,7 +22,7 @@ namespace Cinema.Core.Domain.DTO.User
                this.tickets = new List<Entities.Ticket>();
             }
 
-            foreach (var proposition in propositions)
+            foreach (var prop in propositions)
             {
                 this.propositions = new List<Proposition>();
             }

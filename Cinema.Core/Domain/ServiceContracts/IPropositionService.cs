@@ -10,18 +10,10 @@ namespace Cinema.Core.Domain.ServiceContracts
 {
     public interface IPropositionService
     {
-        public Task<bool> IsExistAsync(int id);
-        public Task<PropositionResponse> GetPropositionAsync(int id);
-        public Task<ICollection<PropositionResponse>> GetPropositionAsync();
-        public Task<PropositionResponse> CreatePropositionAsync(PropositionAddRequest proposition);
-        public Task<PropositionResponse> UpdatePropositionAsync(PropositionUpdateRequest proposition);
-        public Task DeletePropositionAsync(int id);
-
-        //old 
-        /*public Task<PropositionResponse?> AddPropositionAsync(PropositionAddRequest? addProp);
+        public Task<PropositionResponse?> AddPropositionAsync(PropositionAddRequest? addProp);
         public Task<PropositionResponse>? GetPropositionAsync(int propositionID);        
-        public Task<List<PropositionResponse>> GetAllPropositionssAsync(Guid? UserID);
+/*        public Task<List<PropositionResponse>> GetAllPropositionsAsync(Guid? UserID);*/
         public Task<bool> RemovePropositionAsync(PropositionResponse? proposition);
-        public Task<bool> ClearPropositionAsync(Guid? UserID);*/
+        public Task<bool> ClearPropositionAsync(Guid? UserID);
     }
 }

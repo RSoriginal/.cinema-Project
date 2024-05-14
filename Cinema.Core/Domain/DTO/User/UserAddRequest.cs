@@ -37,9 +37,9 @@ namespace Cinema.Core.Domain.DTO.User
                 user.Tickets.Add(ticket.ToTicket());
             }
 
-            foreach (var proposition in addPropositions)
+            foreach (var prop in addPropositions)
             {
-                user.Propositions.Add(proposition.ToProposition());
+                user.Propositions.Add(prop.ToProposition());
             }
             return user;
         }

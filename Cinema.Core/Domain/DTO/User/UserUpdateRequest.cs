@@ -18,7 +18,7 @@ namespace Cinema.Core.Domain.DTO.User
                 tickets = Tickets;
             }
 
-            foreach (var proposition in propositions)
+            foreach (var prop in propositions)
             {
                 propositions = Propositions;
             }

@@ -44,10 +44,10 @@ namespace Cinema.Core.Domain.DTO.Propositions
             return JsonSerializer.Serialize(this);
         }
 
-        public PropositionAddRequest ToAddRequest()
+/*        public PropositionAddRequest ToAddRequest()
         {
             return new PropositionAddRequest(Description, Discount, MovieId);
-        }
+        }*/
 
 
     }
@@ -55,7 +55,7 @@ namespace Cinema.Core.Domain.DTO.Propositions
 
     public static class PropositionExtentions
     {
-        static PropositionResponse ToPropositionResponse(this Proposition proposition)
+        public static PropositionResponse ToPropositionResponse(this Proposition proposition)
         {
             return new PropositionResponse
             {
