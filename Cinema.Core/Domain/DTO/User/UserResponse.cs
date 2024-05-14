@@ -13,13 +13,13 @@ namespace Cinema.Core.Domain.DTO.User
     public class UserResponse
     {
 
-        public ICollection<Ticket> tickets { get; set; }
+        public ICollection<Entities.Ticket> tickets { get; set; }
         public ICollection<Proposition> propositions { get; set; }
         public UserResponse()
         {
             foreach (var ticket in tickets)
             {
-               this.tickets = new List<Ticket>();
+               this.tickets = new List<Entities.Ticket>();
             }
 
             foreach (var prop in propositions)
@@ -38,9 +38,9 @@ namespace Cinema.Core.Domain.DTO.User
             return JsonSerializer.Serialize(this);
         }
 
-        public UserADD ToAddRequest()
+        public UserAddRequest ToAddRequest()
         {
-            return new UserADD(tickets, propositions);
+            return new UserAddRequest(tickets, propositions);
         }
     }
 
@@ -50,8 +50,8 @@ namespace Cinema.Core.Domain.DTO.User
         {
             return new UserResponse
             {
-                tickets = user.tickets,
-                propositions = user.propositions
+                tickets = user.Tickets,
+                propositions = user.Propositions
             };
 
             /*   foreach (var ticket in user.tickets)

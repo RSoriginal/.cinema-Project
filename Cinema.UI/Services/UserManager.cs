@@ -1,4 +1,5 @@
 ﻿using Cinema.Core.Domain.DTO.User;
+using Cinema.Core.Domain.Entities;
 using Cinema.Core.Domain.ServiceContracts;
 using Cinema.Infrastructure.DBContext;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +15,7 @@ namespace Cinema.UI.Services
             _context = context;
             _propService = propositionService;
         }
-        public async Task<UserResponse> AddUser(UserADD aDD)
+        public async Task<UserResponse> AddUser(UserAddRequest aDD)
         {
             if (aDD == null) throw new ArgumentNullException(nameof(aDD));
             if (aDD.id == Guid.Empty) throw new ArgumentException(nameof(aDD.id));
@@ -30,23 +31,27 @@ namespace Cinema.UI.Services
 
         public async Task DeleteUserAsync(int id)
         {
-            _context.Tickets.Remove(await _context.CinemaUsers.FindAsync(id) ?? throw new ArgumentException("Invalid User response"));
+            _context.CinemaUsers.Remove(await _context.CinemaUsers.FindAsync(id) ?? throw new ArgumentException("Invalid User response"));
             await _context.SaveChangesAsync();
         }
 
-        public Task<UserResponse>? GetUserAsync(int UserId)
+        public async Task<UserResponse>? GetUserAsync(int UserId)
         {
-            throw new NotImplementedException();
+            var user = await _context.CinemaUsers.FindAsync(UserId) ?? throw new ArgumentException($"Ticket not found. Id: {UserId}", nameof(UserId));
+            return user.ToUserResponse();
         }
 
-        public Task<bool> IsUserExistAsync(int id)
+        public async Task<bool> IsUserExistAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.CinemaUsers.AnyAsync(e => e.id == id);
         }
 
-        public Task<UserResponse> UpdateUserAsync(UserUpdate update)
+        public async Task<UserResponse> UpdateUserAsync(UserUpdate update)
         {
-            throw new NotImplementedException();
+            var dbUser = update.ToCinemaUser();
+            _context.CinemaUsers.Update(dbUser);
+            await _context.SaveChangesAsync();
+            return dbUser.ToUserResponse();
         }
     }
 }

@@ -40,12 +40,12 @@ namespace Cinema.Core.Domain.DTO.User
 
             foreach (var ticket in Tickets)
             {
-                user.tickets.Add(ticket.ToTicket()/*Віталій має зробити ToTicket метод*/);
+                user.Tickets.Add(ticket.ToTicket()/*Віталій має зробити ToTicket метод*/);
             }
 
             foreach (var prop in Propositions)
             {
-                user.propositions.Add(prop.ToProposition());
+                user.Propositions.Add(prop.ToProposition());
             }
 
             return user;

@@ -9,7 +9,7 @@ namespace Cinema.Core.Domain.ServiceContracts
 {
     public interface IUserService
     {    
-        public Task<UserResponse> AddUser(UserADD aDD);
+        public Task<UserResponse> AddUser(UserAddRequest aDD);
         public Task<UserResponse>? GetUserAsync(int UserId);
         public Task<UserResponse> UpdateUserAsync(UserUpdate update);
         public Task<bool> IsUserExistAsync(int id);
