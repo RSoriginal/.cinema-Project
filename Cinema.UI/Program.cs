@@ -1,5 +1,6 @@
 using Cinema.Core.Domain.Entities;
 using Cinema.Core.Domain.ServiceContracts;
+using Cinema.Core.ServiceContracts.DTO.Services;
 using Cinema.Infrastructure.DBContext;
 using Cinema.UI.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -11,7 +12,7 @@ using StoreUI.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection2") ?? throw new InvalidOperationException("Connection string not found.");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
@@ -25,6 +26,7 @@ builder.Services.AddIdentity<CinemaUser, CinemaRole>(options =>
 
 builder.Services.AddRazorPages();
 builder.Services.AddTransient<IMovieService, MovieService>();
+builder.Services.AddTransient<ITicketService, TicketService>();
 
 builder.Services.AddTransient<IEmailSender, SmtpEmailSender>((x) =>
 {
