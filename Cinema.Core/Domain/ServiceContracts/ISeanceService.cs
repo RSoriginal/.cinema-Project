@@ -12,8 +12,8 @@ namespace Cinema.Core.Domain.ServiceContracts
         public Task<bool> IsExistAsync(int id);
         public Task<SeanceResponse> GetSeanceAsync(int id);
         public Task<ICollection<SeanceResponse>> GetSeancesAsync();
-        public Task<SeanceResponse> CreateSeanceAsync(SeanceAddRequest movie);
-        public Task<SeanceResponse> UpdateSeanceAsync(SeanceUpdateRequest movie);
+        public Task<SeanceResponse> CreateSeanceAsync(SeanceAddRequest seance);
+        public Task<SeanceResponse> UpdateSeanceAsync(SeanceUpdateRequest seance);
         public Task DeleteSeanceAsync(int id);
     }
 }
