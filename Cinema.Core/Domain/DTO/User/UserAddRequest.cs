@@ -15,7 +15,7 @@ namespace Cinema.Core.Domain.DTO.User
     {
         public ICollection<Entities.Ticket> tickets { get; set; }
         public ICollection<Proposition> propositions { get; set; }
-        public ICollection<AddProposition> addPropositions { get; set; }
+        public ICollection<PropositionAddRequest> addPropositions { get; set; }
         public ICollection<TicketAddRequest> addTickets { get; set; }
 
         public UserAddRequest(ICollection<Entities.Ticket> Tickets, ICollection<Proposition> Propositions)
@@ -34,12 +34,12 @@ namespace Cinema.Core.Domain.DTO.User
 
             foreach (var ticket in addTickets)
             {
-                user.Tickets.Add(ticket.ToTicket()/*Віталій має зробити ToTicket метод*/);
+                user.Tickets.Add(ticket.ToTicket());
             }
 
-            foreach (var prop in addPropositions)
+            foreach (var proposition in addPropositions)
             {
-                user.Propositions.Add(prop.ToProposition());
+                user.Propositions.Add(proposition.ToProposition());
             }
             return user;
         }

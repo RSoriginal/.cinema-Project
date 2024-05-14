@@ -1,6 +1,6 @@
 ﻿using Cinema.Core.Domain.DTO.Ticket;
 
-namespace Cinema.Core.ServiceContracts
+namespace Cinema.Core.Domain.ServiceContracts
 {
     public interface ITicketService
     {

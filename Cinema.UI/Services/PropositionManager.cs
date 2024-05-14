@@ -17,7 +17,7 @@ namespace Cinema.Core.Domain.Sefvices
             _context = context;
         }
 
-        public async Task<PropositionResponse?> AddPropositionAsync(AddProposition? addProp)
+        public async Task<PropositionResponse?> AddPropositionAsync(PropositionAddRequest? addProp)
         {
             if (addProp == null) throw new ArgumentNullException(nameof(addProp));
 

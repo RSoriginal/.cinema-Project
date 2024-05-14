@@ -46,7 +46,7 @@ namespace Cinema.UI.Services
             return await _context.CinemaUsers.AnyAsync(e => e.id == id);
         }
 
-        public async Task<UserResponse> UpdateUserAsync(UserUpdate update)
+        public async Task<UserResponse> UpdateUserAsync(UserUpdateRequest update)
         {
             var dbUser = update.ToCinemaUser();
             _context.CinemaUsers.Update(dbUser);
