@@ -1,0 +1,40 @@
+﻿@model IEnumerable<TicketsViewModel>
+@{
+    ViewData["Title"] = "Tickets";
+}
+<h1>Tickets</h1>
+
+<p>
+    <a asp-action="Create">Create new ticket</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Id)</th>
+            <th>@Html.DisplayNameFor(model => model.SeatNumber)</th>
+            <th>@Html.DisplayNameFor(model => model.Price)</th>
+            <th>@Html.DisplayNameFor(model => model.IsAvailable)</th>
+            <th>@Html.DisplayNameFor(model => model.SeanceId)</th>
+            <th>@Html.DisplayNameFor(model => model.UserId)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ticket in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelTicket => ticket.Id)</td>
+                <td>@Html.DisplayFor(modelTicket => ticket.SeatNumber)</td>
+                <td>@Html.DisplayFor(modelTicket => ticket.Price)</td>
+                <td>@Html.DisplayFor(modelTicket => ticket.IsAvailable ? "Yes" : "No")</td>
+                <td>@Html.DisplayFor(modelTicket => ticket.SeanceId)</td>
+                <td>@Html.DisplayFor(modelTicket => ticket.UserId)</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@ticket.Id">Details</a> |
+                    <a asp-action="Edit" asp-route-id="@ticket.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@ticket.Id">Видалити</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
