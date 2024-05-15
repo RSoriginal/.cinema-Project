@@ -49,9 +49,7 @@ namespace Cinema.UI.Areas.Admin.ViewModels
                 Price = ticketResponse.Price,
                 IsAvailable = ticketResponse.IsAvailable,
                 SeanceId = ticketResponse.SeanceId,
-                Seance = ticketResponse.Seance,
-                UserId= ticketResponse.UserId,
-                User = ticketResponse.User
+                UserId= ticketResponse.UserId
             };
         }
     }
