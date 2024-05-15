@@ -40,10 +40,15 @@
                     <img src="images/logo.png" alt="Логотип">
                 </div>
                 <div class="nav">
-                    <a href="index.html">Головна</a>
-                    <a href="films.html">Фільми</a>
-                    <a href="rozkl1.html">Розклад</a>
-                    <img src="images/icon_kab.png" alt="Иконка головного кабинета" class="icon2" id="icon">
+                    @* <a href="index.html">Головна</a> *@
+                    @Html.ActionLink("Головна", "Index", "Home", null, new { @class = "nav-link" })
+                    @* <a href="films.html">Фільми</a> *@
+                    @Html.ActionLink("Фільми", "Index", "Movies", null, new { @class = "nav-link" })
+                    @* <a href="rozkl1.html">Розклад</a> *@
+                    @Html.ActionLink("Розклад", "Schedule", "Movies", null, new { @class = "nav-link" })                   
+                    <a href="~/Identity/Account/Login">
+                        <img src="images/icon_kab.png" alt="Иконка головного кабинета" class="icon2" id="icon">
+                        </a>
                 </div>
             </div>
             <!-- Swiper -->
