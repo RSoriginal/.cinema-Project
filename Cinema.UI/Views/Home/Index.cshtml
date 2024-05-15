@@ -1,14 +1,162 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Movies Booking";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    @*@if (User.IsInRole("Admin"))
-    {
+<!DOCTYPE html>
+<html lang="en" class="wide smoothscroll wow-animation">
+<head>
+    <!-- Site Title -->
+    <title>Home</title>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 
-    }*@
-    <ul>
-        <li class="nav-item"><a class="manage-link" id="two-factor" asp-area="Admin" asp-controller="Admin" asp-action="Index">Admin</a></li>
-    </ul>
-</div>
+    <!-- Stylesheets -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <!--<link href='//fonts.googleapis.com/css?family=Merriweather:400italic%7CMerriweather+Sans:300,400,700' rel='stylesheet' type='text/css'>-->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!--[if lt IE 10]>
+    <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!-- The Main Wrapper -->
+    <div class="page">
+
+        <!--For older internet explorer-->
+        <div class="old-ie" style='background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;'>
+            <a href="http://windows.microsoft.com/en-US/internet-explorer/..">
+                <img src="images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820"
+                     alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+        </div>
+
+        <!--========================================================
+                                  HEADER
+        =========================================================-->
+        <header class="page-header">
+            <div class="header1">
+                <div class="logo">
+                    <img src="images/logo.png" alt="Логотип">
+                </div>
+                <div class="nav">
+                    <a href="index.html">Головна</a>
+                    <a href="films.html">Фільми</a>
+                    <a href="rozkl1.html">Розклад</a>
+                    <img src="images/icon_kab.png" alt="Иконка головного кабинета" class="icon2" id="icon">
+                </div>
+            </div>
+            <!-- Swiper -->
+
+            <div class="swiper-container swiper-slider" data-height="100vh" data-min-height="320px">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" data-slide-bg="images/image1.png">
+                        <div class="swiper-slide-caption">
+                            <div class="container text-left">
+                                <div class="brand__name">Дюна Частина друга</div>
+
+                                </a>
+                                <div>
+                                    <p class="textik">
+                                        Екшн, Фантастика, Пригоди, Бойовик
+                                        <img src="images/calendar.png" alt="Іконка календар" class="calendar">2024
+                                        <img src="images/clock.png" alt="Іконка календар" class="clock1">2 год 46 хв
+                                    </p>
+                                </div>
+                                <div>
+                                    <img class="foto" src="https://cdn.builder.io/api/v1/image/assets/TEMP/ff2103d520209eaa0f9e1a56821b34e5456d6f6f66797ac6023d2d7ee17492ae?" alt="">
+                                </div>
+                                <section class="btn-cord">
+                                    <!--Кнопка-->
+                                    <div class="butoon1">
+                                        <a href="#" class="btn2 btn-md butoon2">Забронювати квитки</a>
+                                        <a href="#" class="btn2 btn-md butoon3 ">Дивитися трейлер</a>
+                                        <a href="#" class="btn2 btn-md butoon3 ">Огляд</a>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="swiper-slide" data-slide-bg="images/image2.png">
+                        <div class="swiper-slide-caption">
+                            <div class="container text-left">
+                                <div class="brand__name">Дюна Частина друга</div>
+
+                                </a>
+                                <div>
+                                    <p class="textik">
+                                        Екшн, Фантастика, Пригоди, Бойовик
+                                        <img src="images/calendar.png" alt="Іконка календар" class="calendar">2024
+                                        <img src="images/clock.png" alt="Іконка календар" class="clock1">2 год 46 хв
+                                    </p>
+                                </div>
+                                <div>
+                                    <img class="foto" src="https://cdn.builder.io/api/v1/image/assets/TEMP/ff2103d520209eaa0f9e1a56821b34e5456d6f6f66797ac6023d2d7ee17492ae?" alt="">
+                                </div>
+                                <section class="btn-cord">
+                                    <!--Кнопка-->
+                                    <div class="butoon1">
+                                        <a href="#" class="btn2 btn-md butoon2">Забронювати квитки</a>
+                                        <a href="#" class="btn2 btn-md butoon3 ">Дивитися трейлер</a>
+                                        <a href="#" class="btn2 btn-md butoon3 ">Огляд</a>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide" data-slide-bg="images/image3.jpg">
+                        <div class="swiper-slide-caption">
+                            <div class="container text-left">
+                                <div class="brand__name">Дюна Частина друга</div>
+
+                                </a>
+                                <div>
+                                    <p class="textik">
+                                        Екшн, Фантастика, Пригоди, Бойовик
+                                        <img src="images/calendar.png" alt="Іконка календар" class="calendar">2024
+                                        <img src="images/clock.png" alt="Іконка календар" class="clock1">2 год 46 хв
+                                    </p>
+                                </div>
+                                <div>
+                                    <img class="foto" src="https://cdn.builder.io/api/v1/image/assets/TEMP/ff2103d520209eaa0f9e1a56821b34e5456d6f6f66797ac6023d2d7ee17492ae?" alt="">
+                                </div>
+                                <section class="btn-cord">
+                                    <!--Кнопка-->
+                                    <div class="butoon1">
+                                        <a href="#" class="btn2 btn-md butoon2">Забронювати квитки</a>
+                                        <a href="#" class="btn2 btn-md butoon3 ">Дивитися трейлер</a>
+                                        <a href="#" class="btn2 btn-md butoon3 ">Огляд</a>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Swiper Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+
+            <!-- Make a reservation -->
+            <!--<section>
+                <div class="container text-center">
+                    <div class="divider-3 text-primary"></div>
+                    <a href="#" class="btn btn-md btn-primary">make <br>a reservation</a>
+                </div>
+            </section>-->
+        </header>
+        <!--========================================================
+                                  CONTENT
+        =========================================================-->
+
+    </div>
+
+    <!-- Core Scripts -->
+    <script src="js/core.min.js"></script>
+    <!-- Additional Functionality Scripts -->
+    <script src="js/script.js"></script>
+    <!-- coded by ATOM -->
+</body>
+</html>

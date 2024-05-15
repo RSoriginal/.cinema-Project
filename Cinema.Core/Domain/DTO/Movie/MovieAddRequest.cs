@@ -33,7 +33,7 @@ namespace Cinema.Core.Domain.DTO.Movie
         public string Genre { get; set; } = null!;
         public DateTime Duration { get; set; }
         public double Rating { get; set; }
-        public ICollection<Seance> Seances { get; set; }
+        public ICollection<Entities.Seance> Seances { get; set; }
         public Entities.Movie ToMovie()
         {
             var movie = new Entities.Movie()
