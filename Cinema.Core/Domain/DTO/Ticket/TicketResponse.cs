@@ -46,7 +46,7 @@ namespace Cinema.Core.Domain.DTO.Ticket
                 SeatNumber = ticket.SeatNumber,
                 Price = ticket.Price,
                 IsAvailable = ticket.IsAvailable,
-                SeanceId = ticket.SeanceId,
+                SeanceId = ticket.SeanceId,               
                 UserId = ticket.UserId
             };
         }
