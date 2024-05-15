@@ -1,0 +1,162 @@
+
+.body{
+    margin: 0;
+  }
+    
+    .schedule-container {
+        justify-content: flex-end;
+      background-color: #000;
+      /*display: flex;*/
+      flex-direction: column;
+      color: #fff;
+      padding: 30px;
+    }  
+   
+    .schedule-header {
+        align-self: end;
+        display: flex;
+        /*margin-top: 22px;*/
+        max-width: 100%;
+        flex-direction: column;
+        justify-content: center; /* Center elements horizontally */
+    }
+  
+    .schedule-title {
+      text-align: center;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #f00 0%, #f46201 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font: 900 48px Montserrat, sans-serif;
+    }
+  
+  
+    .date-tabs {
+      align-self: end;
+      display: flex;
+      margin-top: 20px;
+      max-width: 100%;
+      gap: 20px;
+      font-size: 24px;
+      font-weight: 300;
+      letter-spacing: 0.84px;
+      line-height: 120%;
+    }
+  
+      .date-tab-today {
+      color: #ffe600;
+      font-family: Montserrat, sans-serif;
+      flex-grow: 1;
+      flex-basis: auto;
+    }
+  
+    .date-tab-tomorrow,
+    .date-tab-next-week {
+      font-family: Montserrat, sans-serif;
+    }
+  
+    .date-tab-next-week {
+      flex-grow: 1;
+      flex-basis: auto;
+    }
+  
+    .schedule-content {
+      display: flex;
+      margin-top: 89px;
+      gap: 20px;
+    }
+    
+    .selected-date {
+      align-self: start;
+      display: flex;
+      margin-top: 13px;
+      flex-direction: column;
+      font-size: 48px;
+      font-weight: 300;
+    }
+
+    .selected-date-day,
+    .selected-date-weekday {
+      font-family: Montserrat, sans-serif;
+    }
+  
+    .selected-date-weekday {
+      margin-top: 16px;
+    }
+  
+    .movie-list {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      flex-basis: 0;
+      width: fit-content;
+      justify-content: center; /* Center elements horizontally within .movie-list */
+
+    }
+       
+    .movie-item {
+      border-radius: 100px;
+      background-color: #242424;
+      display: flex;
+      align-items: center;
+      font-size: 24px;
+      font-weight: 300;
+      text-transform: capitalize;
+      letter-spacing: 0.84px;
+      line-height: 120%;
+      justify-content: center;
+      padding: 23px 60px;
+    }
+
+    .movie-details {
+      display: flex;
+      max-width: 100%;
+      gap: 20px;
+      justify-content: space-between;
+    }
+
+    .movie-poster {
+      aspect-ratio: 0.63;
+      object-fit: auto;
+      object-position: center;
+      width: 190px;
+      max-width: 100%;
+    }
+  
+    .showtime-list {
+      align-self: start;
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .showtime-item {
+      font-variant-numeric: lining-nums tabular-nums;
+      font-family: Montserrat, sans-serif;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 201, 10, 1);
+      justify-content: center;
+      padding: 11px 14px;
+    }
+  
+    .showtime-item + .showtime-item {
+      margin-top: 16px;
+    }
+  
+
+  
+    .back-link {
+        align-self: center;
+        margin-top: 90px;
+        padding: 33px 28px;
+        border-radius: 100px;
+        border-image: linear-gradient(to right, #ff0000, #f36600) 1 1 10 stretch; /* Gradient border */
+        border: 1px solid #f36600; /* Fallback solid border */
+            font: 400 20px Montserrat, sans-serif;
+        color: #fff;
+        text-align: center;
+        text-transform: uppercase;
+        justify-content: center;
+      }
+
+      

@@ -44,10 +44,10 @@ namespace Cinema.Core.Domain.DTO.Propositions
             return JsonSerializer.Serialize(this);
         }
 
-/*        public PropositionAddRequest ToAddRequest()
+        public PropositionAddRequest ToAddRequest()
         {
             return new PropositionAddRequest(Description, Discount, MovieId);
-        }*/
+        }
 
 
     }

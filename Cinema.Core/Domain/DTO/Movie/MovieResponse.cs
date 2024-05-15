@@ -1,8 +1,10 @@
-﻿using Cinema.Core.Domain.Entities;
+﻿using Cinema.Core.Domain.DTO.Propositions;
+using Cinema.Core.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Cinema.Core.Domain.DTO.Movie
@@ -20,6 +22,30 @@ namespace Cinema.Core.Domain.DTO.Movie
         public DateTime Duration { get; set; }
         public double Rating { get; set; }
         public ICollection<Entities.Seance>? Seances { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj == null) return false;
+
+            if (obj.GetType() != typeof(MovieResponse)) return false;
+
+            MovieResponse? toCompare = obj as MovieResponse;
+            if (toCompare == null) return false;
+
+            return toCompare.Id == Id &&
+                toCompare.Name == Name &&
+                toCompare.Description == Description;
+        }
+
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+        public override string? ToString()
+        {
+            return JsonSerializer.Serialize(this);
+        }
     }
 
     public static class MovieExtensions
