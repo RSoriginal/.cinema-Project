@@ -169,16 +169,22 @@ html.boxed .page {
     margin-left: 80px;
     margin-top: 30px;
   }
-  .nav {
+.nav {
     float: right;
-    margin-top: 30px;
-    margin-right: 650px
-  }
+    margin-top: 40px;
+    margin-right: 750px
+}
   .nav a {
-    color: #333;
+    color: #FFF;
     text-decoration: none;
-    margin-left: 20px;
+    margin-left: 50px;
     font-size: 18px;
+    font-weight: 200;
+  }
+
+  .nav-link:hover {
+    transform: scale(1.05);
+    color: lightgray;
   }
   /*шапка*/
 
@@ -193,8 +199,11 @@ html.boxed .page {
     top: 48px; /* Отступ сверху */
     right: 80px; /* Отступ справа */
     height: 20px;
-   
   }
+    .icon2:hover {
+        transform: scale(1.15);
+        transition: transform 0.3s ease;
+    }
   
   .show {
     opacity: 1;
@@ -202,7 +211,12 @@ html.boxed .page {
   }
 
   .calendar {
-    
+    margin-left: 30px;
+  }
+
+
+  .clock1 {
+    margin-left: 30px
   }
 
 .row {
@@ -243,14 +257,13 @@ html {
     display: block; }
 
 body {
-  font-family: "Merriweather Sans", sans-serif;
-  font-weight: 400;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
   font-size: 16px;
   line-height: 1.7;
   -webkit-text-size-adjust: none;
   color: #bababa;
   background: #fff; }
-
 
 /*
 * @subsection   Typography
@@ -259,9 +272,10 @@ body {
 */
 h1, h2, h3, h4, h5, h6,
 .heading-1, .heading-2, .heading-3, .heading-4, .heading-5, .heading-6 {
-  display: block;
-  color: #313131;
-  font-weight: 900; }
+    display: block;
+    color: #313131;
+    font-weight: 900;
+}
 
 h1, .heading-1 {
   font-size: 38px;
@@ -7496,9 +7510,9 @@ html:not(.lt-ie10) .not-animated {
   border-radius:20px;
   display: inline-block;
   max-width: 100%;
-  font-weight: 900;
+  font-weight: 400;
   line-height: 1.2;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.035em;
   text-align: center;
   white-space: nowrap;
   border-style: solid;
@@ -7507,7 +7521,8 @@ html:not(.lt-ie10) .not-animated {
   vertical-align: middle;
   z-index: 1;
   text-decoration: none; }
-  .btn:hover {
+  .btn2:hover {
+    transform: scale(1.05);
     color: inherit;
     text-decoration: none; }
 
@@ -7531,10 +7546,19 @@ html:not(.lt-ie10) .not-animated {
     text-decoration: none; }
 
 .btn-md {
-  border-width: 2px;
-  padding: 14px 32px;
-  font-size: 14px;
-  line-height: 18px; }
+    border-width: 1px;
+    border-color: #F36501;
+    padding: 17px 32px;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.btn-md1 {
+    background-image: linear-gradient(90deg,#FFC90A, #F36501, #FF0701);
+    padding: 17px 32px;
+    font-size: 14px;
+    line-height: 18px;
+}
 
 .btn-default {
   color: #bababa;
@@ -7626,8 +7650,15 @@ a.icon-primary:hover {
  * @subsection   Brand
  */
 .textik {
-  margin-left: 80px;
-  margin-bottom: 20px;
+   margin-left: 80px;
+   margin-bottom: 20px;
+
+    /*width: 322px;
+    height: 24px;
+    top: 777px;
+    left: 80px;
+    gap: 0px;
+    opacity: 0px;*/
 }
 
 .foto {
@@ -7639,20 +7670,24 @@ a.icon-primary:hover {
   position: relative;
   display: inline-block;
   /*padding: 34px 0;*/ }
-  .brand__name {
+.brand__name {
     -webkit-transform: translateX(7px);
     transform: translateX(7px);
-    margin-left: 80px;
+    margin-left: 75px;
     margin-bottom: 53px;
-    font-size: 40px;
-    font-weight: 700;
+    font-size: 64px;
+    font-weight: 900;
     line-height: 1;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: #fff; }
+    letter-spacing: 0.035em;
+    color: #fff;
 
-  
-  
+   /* font-family: Montserrat;
+    font-size: 64px;
+    font-weight: 900;
+    line-height: 76.49px;
+    letter-spacing: 0.035em;
+    text-align: left;*/
+}
 
 /*
  * @subsection   Box
@@ -7661,7 +7696,8 @@ a.icon-primary:hover {
 * @subsection Box
 */
 .box__left {
-  padding-bottom: 30px; }
+    padding-bottom: 30px;
+}
 
 .box__right {
   padding-top: 30px; }
@@ -8530,17 +8566,24 @@ button.swiper-pagination-bullet {
 .page-header address {
   letter-spacing: 0.05em; }
 .page-header p {
+  font-size: 19px;
   font-weight: 300;
-  letter-spacing: 0.025em;
+  letter-spacing: 0.035em;
   color: #fff; }
-
+/*font-family: Montserrat;
+font-size: 20px;
+font-weight: 300;
+line-height: 23.9px;
+letter-spacing: 0.035em;
+text-align: left;*/
 /*
 * @section      Page Content
 * @description  This section holds specific style redeclarations for some
 *               of common elements in page content
 */
 .desktop {
-  min-height: 100vh; }
+    min-height: 100vh;
+}
 
 /*
 * @section      Page Footer
