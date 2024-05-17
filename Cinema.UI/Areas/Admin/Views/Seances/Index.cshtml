@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Cinema.Core.Domain.Entities.Seance>
+﻿@model IEnumerable<SeancesViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -19,7 +19,7 @@
                 @Html.DisplayNameFor(model => model.AssignedAt)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Movie)
+                @Html.DisplayNameFor(model => model.MovieId)
             </th>
             <th></th>
         </tr>
@@ -34,7 +34,7 @@
                 @Html.DisplayFor(modelItem => item.AssignedAt)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Movie.Actors)
+                    @Html.DisplayFor(modelItem => item.MovieId)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

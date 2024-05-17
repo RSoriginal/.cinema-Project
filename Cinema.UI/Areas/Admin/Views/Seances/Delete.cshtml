@@ -1,4 +1,4 @@
-﻿@model Cinema.Core.Domain.Entities.Seance
+﻿@model SeancesViewModel
 
 @{
     ViewData["Title"] = "Delete";
@@ -24,10 +24,10 @@
             @Html.DisplayFor(model => model.AssignedAt)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Movie)
+            @Html.DisplayNameFor(model => model.MovieId)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Movie.Actors)
+            @Html.DisplayFor(model => model.MovieId)
         </dd>
     </dl>
     

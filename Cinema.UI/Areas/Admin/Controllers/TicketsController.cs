@@ -1,8 +1,12 @@
-﻿using Cinema.Core.Domain.ServiceContracts;
+﻿using Cinema.Core.Domain.Entities;
+using Cinema.Core.Domain.ServiceContracts;
+using Cinema.Infrastructure.DBContext;
 using Cinema.UI.Areas.Admin.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace Cinema.UI.Areas.Admin.Controllers
 {
@@ -11,9 +15,13 @@ namespace Cinema.UI.Areas.Admin.Controllers
     public sealed class TicketsController : Controller
     {
         private readonly ITicketService _ticketService;
-        public TicketsController(ITicketService ticketService)
+        private readonly ISeanceService _seanceService;
+        private readonly ApplicationDbContext _context;
+        public TicketsController(ITicketService ticketService, ISeanceService seanceService, ApplicationDbContext context)
         {
             _ticketService = ticketService;
+            _seanceService = seanceService;
+            _context = context;
         }
         // GET: TicketsController
         public async Task<IActionResult> Index()
@@ -40,8 +48,11 @@ namespace Cinema.UI.Areas.Admin.Controllers
         }
 
         // GET: TicketsController/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            //ViewData["SeanceId"] = new SelectList(await _seanceService.GetSeancesAsync(), "Id", "Actors");
+            ViewBag.SeanceId = new SelectList(_context.Set<Seance>(), "Id", "Movie");
+            ViewBag.UserId = new SelectList(_context.Set<CinemaUser>(), "Id", "UserName");
             return View();
         }
 
@@ -56,7 +67,9 @@ namespace Cinema.UI.Areas.Admin.Controllers
                 await _ticketService.CreateTicketAsync(ticketAddRequest);
                 return RedirectToAction(nameof(Index));
             }
-                return View(ticketsViewModel);            
+            ViewBag.SeanceId = new SelectList(_context.Set<Seance>(), "Id", "Movie", ticketsViewModel.SeanceId);
+            ViewBag.UserId = new SelectList(_context.Set<CinemaUser>(), "Id", "UserName", ticketsViewModel.UserId);
+            return View(ticketsViewModel);            
         }
 
         // GET: TicketsController/Edit/5
