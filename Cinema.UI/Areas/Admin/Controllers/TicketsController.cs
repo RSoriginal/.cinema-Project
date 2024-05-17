@@ -51,7 +51,7 @@ namespace Cinema.UI.Areas.Admin.Controllers
         public async Task<IActionResult> Create()
         {
             //ViewData["SeanceId"] = new SelectList(await _seanceService.GetSeancesAsync(), "Id", "Actors");
-            ViewBag.SeanceId = new SelectList(_context.Set<Seance>(), "Id", "Movie");
+            ViewBag.SeanceId = new SelectList(_context.Set<Seance>(), "Id", "AssignedAt");
             ViewBag.UserId = new SelectList(_context.Set<CinemaUser>(), "Id", "UserName");
             return View();
         }
@@ -67,7 +67,7 @@ namespace Cinema.UI.Areas.Admin.Controllers
                 await _ticketService.CreateTicketAsync(ticketAddRequest);
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.SeanceId = new SelectList(_context.Set<Seance>(), "Id", "Movie", ticketsViewModel.SeanceId);
+            ViewBag.SeanceId = new SelectList(_context.Set<Seance>(), "Id", "AssignedAt", ticketsViewModel.SeanceId);
             ViewBag.UserId = new SelectList(_context.Set<CinemaUser>(), "Id", "UserName", ticketsViewModel.UserId);
             return View(ticketsViewModel);            
         }
