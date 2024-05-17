@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Cinema.Core.Domain.Entities;
 using Cinema.Infrastructure.DBContext;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace Cinema.UI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class SeancesController : Controller
     {
         private readonly ISeanceService _seanceService;
@@ -76,7 +78,6 @@ namespace Cinema.UI.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
             var seancesViewModel = seance.ToSeanceViewModel();
             ViewBag.MovieId = new SelectList(_context.Set<Movie>(), "Id", "Name", seancesViewModel.MovieId);
             return View(seancesViewModel);
@@ -93,7 +94,6 @@ namespace Cinema.UI.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
                 try
