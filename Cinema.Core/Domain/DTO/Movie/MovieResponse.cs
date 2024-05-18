@@ -1,4 +1,5 @@
 ﻿using Cinema.Core.Domain.DTO.Propositions;
+using Cinema.Core.Domain.DTO.Seance;
 using Cinema.Core.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,9 @@ namespace Cinema.Core.Domain.DTO.Movie
 {
     public class MovieResponse
     {
-        public MovieResponse() { }
+        public MovieResponse() {
+            this.Seances = new HashSet<SeanceResponse>();
+        }
 
         public int Id { get; set; }
         public string Name { get; set; } = null!;
@@ -21,7 +24,7 @@ namespace Cinema.Core.Domain.DTO.Movie
         public string Genre { get; set; } = null!;
         public DateTime Duration { get; set; }
         public double Rating { get; set; }
-        public ICollection<Entities.Seance>? Seances { get; set; }
+        public ICollection<SeanceResponse>? Seances { get; set; }
 
         public override bool Equals(object? obj)
         {
@@ -46,6 +49,10 @@ namespace Cinema.Core.Domain.DTO.Movie
         {
             return JsonSerializer.Serialize(this);
         }
+        public MovieAddRequest ToAddRequest()
+        {
+            return new MovieAddRequest(Name, Description, Trailers, Actors, Genre, Duration, Rating);
+        }
     }
 
     public static class MovieExtensions
@@ -54,6 +61,7 @@ namespace Cinema.Core.Domain.DTO.Movie
         {
             var movieResponse = new MovieResponse()
             {
+                Id = movie.Id,
                 Name = movie.Name,
                 Description = movie.Description,
                 Actors = movie.Actors,
@@ -65,7 +73,7 @@ namespace Cinema.Core.Domain.DTO.Movie
 
             foreach (var seance in movie.Seances)
             {
-                movieResponse.Seances.Add(seance);
+                movieResponse.Seances.Add(seance.ToSeanceResponse());
             }
             return movieResponse;
         }

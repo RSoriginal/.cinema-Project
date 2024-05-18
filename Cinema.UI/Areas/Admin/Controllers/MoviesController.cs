@@ -8,6 +8,9 @@ using Microsoft.EntityFrameworkCore;
 using Cinema.Core.Domain.Entities;
 using Cinema.Infrastructure.DBContext;
 using Microsoft.AspNetCore.Authorization;
+using Cinema.Core.Domain.ServiceContracts;
+using Cinema.UI.Areas.Admin.ViewModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace Cinema.UI.Areas.Admin.Controllers
 {
@@ -15,35 +18,36 @@ namespace Cinema.UI.Areas.Admin.Controllers
     [Authorize("Admin")]
     public class MoviesController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IMovieService _movieService;
+        private readonly UserManager<CinemaUser> _userManager;
 
-        public MoviesController(ApplicationDbContext context)
+        public MoviesController(IMovieService movieService, UserManager<CinemaUser> userManager)
         {
-            _context = context;
+            _movieService = movieService;
+            _userManager = userManager;
         }
 
         // GET: Admin/Movies
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Movies.ToListAsync());
+            var movies = await _movieService.GetMoviesAsync();
+            return View(movies.Select(x => x.ToMovieViewModel()));
         }
 
         // GET: Admin/Movies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if (id == null || !await _movieService.IsExistAsync(id.Value))
             {
                 return NotFound();
             }
 
-            var movie = await _context.Movies
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var movie = await _movieService.GetMovieAsync(id.Value);
             if (movie == null)
             {
                 return NotFound();
             }
-
-            return View(movie);
+            return View(movie.ToMovieViewModel());
         }
 
         // GET: Admin/Movies/Create
@@ -57,12 +61,12 @@ namespace Cinema.UI.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Trailers,Actors,Genre,Duration,Rating")] Movie movie)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,Trailers,Actors,Genre,Duration,Rating")] MovieViewModel movie)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(movie);
-                await _context.SaveChangesAsync();
+                var movieAddRequest = movie.ToMovieAddRequest();
+                await _movieService.CreateMovieAsync(movieAddRequest);
                 return RedirectToAction(nameof(Index));
             }
             return View(movie);
@@ -71,17 +75,17 @@ namespace Cinema.UI.Areas.Admin.Controllers
         // GET: Admin/Movies/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (id == null || !await _movieService.IsExistAsync(id.Value))
             {
                 return NotFound();
             }
 
-            var movie = await _context.Movies.FindAsync(id);
+            var movie = await _movieService.GetMovieAsync(id.Value);
             if (movie == null)
             {
                 return NotFound();
             }
-            return View(movie);
+            return View(movie.ToMovieViewModel());
         }
 
         // POST: Admin/Movies/Edit/5
@@ -89,7 +93,7 @@ namespace Cinema.UI.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Trailers,Actors,Genre,Duration,Rating")] Movie movie)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Trailers,Actors,Genre,Duration,Rating")] MovieViewModel movie)
         {
             if (id != movie.Id)
             {
@@ -100,12 +104,11 @@ namespace Cinema.UI.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(movie);
-                    await _context.SaveChangesAsync();
+                    await _movieService.UpdateMovieAsync(movie.ToMovieUpdateRequest());
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MovieExists(movie.Id))
+                    if (!await _movieService.IsExistAsync(movie.Id))
                     {
                         return NotFound();
                     }
@@ -122,19 +125,18 @@ namespace Cinema.UI.Areas.Admin.Controllers
         // GET: Admin/Movies/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (id == null || !await _movieService.IsExistAsync(id.Value))
             {
                 return NotFound();
             }
 
-            var movie = await _context.Movies
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var movie = await _movieService.GetMovieAsync(id.Value);
             if (movie == null)
             {
                 return NotFound();
             }
 
-            return View(movie);
+            return View(movie.ToMovieViewModel());
         }
 
         // POST: Admin/Movies/Delete/5
@@ -142,19 +144,12 @@ namespace Cinema.UI.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var movie = await _context.Movies.FindAsync(id);
+            var movie = await _movieService.GetMovieAsync(id);
             if (movie != null)
             {
-                _context.Movies.Remove(movie);
+                await _movieService.DeleteMovieAsync(id);
             }
-
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool MovieExists(int id)
-        {
-            return _context.Movies.Any(e => e.Id == id);
         }
     }
 }

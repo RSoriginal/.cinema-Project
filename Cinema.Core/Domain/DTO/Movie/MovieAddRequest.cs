@@ -1,4 +1,5 @@
-﻿using Cinema.Core.Domain.Entities;
+﻿using Cinema.Core.Domain.DTO.Seance;
+using Cinema.Core.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -33,7 +34,6 @@ namespace Cinema.Core.Domain.DTO.Movie
         public string Genre { get; set; } = null!;
         public DateTime Duration { get; set; }
         public double Rating { get; set; }
-        public ICollection<Entities.Seance> Seances { get; set; }
         public Entities.Movie ToMovie()
         {
             var movie = new Entities.Movie()
@@ -46,11 +46,6 @@ namespace Cinema.Core.Domain.DTO.Movie
                 Rating = this.Rating,
                 Trailers = this.Trailers
             };
-
-            foreach (var seance in Seances)
-            {
-                movie.Seances.Add(seance);
-            }
             return movie;
         }
     }
