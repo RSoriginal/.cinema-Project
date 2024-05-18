@@ -23,6 +23,10 @@ namespace Cinema.Core.Domain.DTO.Propositions
             MovieId = movieId;
         }
 
+        public PropositionAddRequest()
+        {
+        }
+
         public Proposition ToProposition()
         {
             var prop = new Proposition()

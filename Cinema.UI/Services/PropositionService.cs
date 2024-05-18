@@ -23,14 +23,9 @@ namespace Cinema.UI.Services
         {
             if (addProp == null) throw new ArgumentNullException(nameof(addProp));
 
-            if (addProp.UserId == Guid.Empty) throw new ArgumentException(nameof(addProp.UserId));
             if (addProp.MovieId < 0) throw new ArgumentException(nameof(addProp.MovieId));
 
-            if ((await _context.CinemaUsers.Include(x => x.Propositions).Where(x => x.Id == addProp.UserId).FirstAsync())
-                .Propositions.Where(x => x.MovieId == addProp.MovieId).Count() > 0)
-            {
-                return null;
-            }
+          
 
           
 
@@ -47,24 +42,17 @@ namespace Cinema.UI.Services
             return newProposition.Entity.ToPropositionResponse();
         }
 
-        public async Task<bool> ClearPropositionAsync(Guid? UserID)
-        {
-            if (UserID == null) throw new ArgumentNullException(nameof(UserID));
+       
+       
 
-            if ((await _context.propositions.FindAsync(UserID.ToString())) == null) throw new ArgumentException(nameof(UserID));
+        /*        public async Task<List<PropositionResponse>> GetAllPropositionsAsync(Guid? UserID)
+                {
+                    if (UserID == null) throw new ArgumentNullException(nameof(UserID));
 
-           
-            return true;
-        }
+                    if ((await _context.CinemaUsers.FindAsync(UserID.ToString())) == null) throw new ArgumentException(nameof(UserID));
 
-/*        public async Task<List<PropositionResponse>> GetAllPropositionsAsync(Guid? UserID)
-        {
-            if (UserID == null) throw new ArgumentNullException(nameof(UserID));
-
-            if ((await _context.CinemaUsers.FindAsync(UserID.ToString())) == null) throw new ArgumentException(nameof(UserID));
-
-            return (await _context.propositions.Include(x => x.Id).Where(x => x.UserId == UserID).ToListAsync()).Select(x => x.ToUserResponse()).ToList();
-        }*/
+                    return (await _context.propositions.Include(x => x.Id).Where(x => x.UserId == UserID).ToListAsync()).Select(x => x.ToUserResponse()).ToList();
+                }*/
 
         public async Task<PropositionResponse>? GetPropositionAsync(int propositionID)
         {

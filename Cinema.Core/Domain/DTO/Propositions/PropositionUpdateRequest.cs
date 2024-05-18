@@ -10,7 +10,9 @@ namespace Cinema.Core.Domain.DTO.Propositions
 {
     public class PropositionUpdateRequest
     {
-
+        public PropositionUpdateRequest()
+        {
+        }
 
         public PropositionUpdateRequest(int id, string description, decimal discount, int movieId) 
         {

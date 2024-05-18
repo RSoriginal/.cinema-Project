@@ -14,6 +14,5 @@ namespace Cinema.Core.Domain.ServiceContracts
         public Task<PropositionResponse>? GetPropositionAsync(int propositionID);        
 /*        public Task<List<PropositionResponse>> GetAllPropositionsAsync(Guid? UserID);*/
         public Task<bool> RemovePropositionAsync(PropositionResponse? proposition);
-        public Task<bool> ClearPropositionAsync(Guid? UserID);
     }
 }
