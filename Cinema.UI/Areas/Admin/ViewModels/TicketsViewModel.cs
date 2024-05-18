@@ -10,10 +10,9 @@ namespace Cinema.UI.Areas.Admin.ViewModels
         public int SeatNumber { get; set; }
         public decimal Price { get; set; }
         public bool IsAvailable { get; set; }
-        public int SeanceId { get; set; }
-        public Seance? Seance { get; set; }
+        public int SeanceId { get; set; }    
         public Guid UserId { get; set; }
-        public CinemaUser? User { get; set; }
+       
 
         public TicketAddRequest ToTicketAddRequest()
         {
@@ -30,6 +29,7 @@ namespace Cinema.UI.Areas.Admin.ViewModels
         {  
             return new TicketUpdateRequest() 
             {  
+                Id = Id,
                 SeatNumber = SeatNumber, 
                 Price = Price, 
                 IsAvailable = IsAvailable, 

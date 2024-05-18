@@ -13,7 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection2") ?? throw new InvalidOperationException("Connection string not found.");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
@@ -28,6 +28,7 @@ builder.Services.AddIdentity<CinemaUser, CinemaRole>(options =>
 builder.Services.AddRazorPages();
 builder.Services.AddTransient<IMovieService, MovieService>();
 builder.Services.AddTransient<ITicketService, TicketService>();
+builder.Services.AddTransient<ISeanceService, SeanceService>();
 
 builder.Services.AddTransient<IEmailSender, SmtpEmailSender>((x) =>
 {
