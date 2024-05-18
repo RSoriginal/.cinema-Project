@@ -36,7 +36,7 @@ time, mark, audio, video, button, input, textarea {
   margin: 0;
   padding: 0;
   border: 0;
-  font: inherit;
+  font-family: "Montserrat", sans-serif;
   vertical-align: top; }
 
 article, aside, details, figcaption, figure,
@@ -89,7 +89,7 @@ input[type='submit'] {
 a,
 a[href^="tel:"],
 a[href^="callto:"] {
-  font: inherit;
+  font-family: "Montserrat", sans-serif;
   color: inherit;
   text-decoration: none; }
   a:focus,
@@ -136,6 +136,7 @@ html.boxed .page {
 .container {
   position: relative;
   color: #fff;
+  font-family: "Montserrat", sans-serif;
   font-variant-numeric: lining-nums tabular-nums;
   letter-spacing: 2.24px;
   margin-top: 300px;
@@ -150,6 +151,91 @@ html.boxed .page {
   padding-left: 30px;
   padding-right: 30px;
   max-width: 2048px; }
+
+
+
+/*brows1*/
+
+.container_brows1 {
+  position: absolute;
+            top: 46%;
+            left: 21%; /* Расстояние от левого края */
+            transform: translate(-50%, -50%);
+            padding: 20px;
+}
+
+.container_brows2 {
+  position: absolute;
+            top: 46%;
+            left: 19%; /* Расстояние от левого края */
+            transform: translate(-50%, -50%);
+            padding: 20px;
+}
+
+.container_brows3 {
+  position: absolute;
+            top: 46%;
+            left: 23%; /* Расстояние от левого края */
+            transform: translate(-50%, -50%);
+            padding: 20px;
+}
+
+.nazva_brows1 {
+    -webkit-transform: translateX(7px);
+    transform: translateX(7px);
+    font-family: "Montserrat", sans-serif;
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 1;
+    /*letter-spacing: 0.3em;*/
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 50px;
+  }
+
+.text-brows1 {
+
+}
+
+.container_brows1_right {
+  position: absolute;
+            top: 46%;
+            right: -250px; /* Расстояние от левого края */
+            transform: translate(-50%, -50%);
+            padding: 30px;
+            text-align: right;
+}
+.byelow {
+  color: gold;
+}
+
+.carousel-container {
+  margin-left: 40px;
+  color: white;
+  padding: 80px;
+  margin-top: 600px; /* Можно настроить отступ сверху в зависимости от вашего дизайна */
+}
+
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  justify-content: space-between
+}
+
+.carousel img {
+  scroll-snap-align: start;
+  width: 170px; /* Подберите размер изображения под ваш дизайн */
+  height: 190px; /* Подберите размер изображения под ваш дизайн */
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.carousel img:last-child {
+  margin-right: 10px;
+}
+
+
 /*шапка*/
   .header1 {
     /*background-color: rgba(255, 255, 255, 0.5); /* Прозрачный белый цвет */
@@ -168,25 +254,110 @@ html.boxed .page {
     height: 36px; /* Размер логотипа */
     margin-left: 80px;
     margin-top: 30px;
+    
   }
-.nav {
+  .nav {
     float: right;
-    margin-top: 40px;
-    margin-right: 750px
-}
-  .nav a {
-    color: #FFF;
-    text-decoration: none;
-    margin-left: 50px;
-    font-size: 18px;
-    font-weight: 200;
-  }
+    margin-top: 30px;
+    margin-right: 750px;
+    font-family: "Montserrat", sans-serif;
 
-  .nav-link:hover {
-    transform: scale(1.05);
-    color: lightgray;
+  }
+  .nav a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 18px;
   }
   /*шапка*/
+
+  /*bron*/
+  .container22 {
+    display: block;
+    margin-top: -700px;
+    width: 370px;
+    height: 250px;
+    
+    padding: 20px 50px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin-left: 45px;
+}
+.days {
+    display: flex;
+    
+    width: 100%;
+   
+}
+.day {
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: "Montserrat", sans-serif;
+
+}
+.day.selected {
+  border-radius: 10px;
+    border: 1px solid #FFC90A;
+    color: #ffffff;
+}
+.times {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+   /* padding: 0px 10px;*/
+}
+.time {
+  padding: 5px 10px;
+    border-radius: 5px;
+    margin: 0px 0px;
+    font-size: 16px;
+    font-family: "Montserrat", sans-serif;
+
+}
+.time.selected {
+  border-radius: 20px;
+    border: 1px solid #FFC90A;
+    color: #ffffff;
+}
+.day:hover, .time:hover {
+    cursor: pointer;
+   /* background-color: #4a4a4a;*/
+}
+.img-bron {
+  display: block;
+  width: 280px;
+  height: 600px;
+  margin-left: 95px;
+  margin-top: -50px;
+  
+}
+.ekran {
+  margin-top: 150px;
+  margin-left: 625px;
+  
+
+}
+
+.kvitok {
+  display: flex;
+  justify-content: flex-end; /* Выравнивание изображения по правой стороне контейнера */
+  align-items: center; /* Вертикальное центрирование изображения в контейнере */
+  width: 100%; /* Ширина контейнера на всю ширину окна */
+  height: 100%; /* Высота контейнера на всю высоту окна */
+  
+}
+
+.img22 {
+  
+  height: 660px;
+  object-fit: cover;
+  margin-top: -560px;
+  padding-right: 80px
+}
+  /*bron*/
 
   .icon-container {
     opacity: 0;
@@ -199,34 +370,16 @@ html.boxed .page {
     top: 48px; /* Отступ сверху */
     right: 80px; /* Отступ справа */
     height: 20px;
+   
   }
-    .icon2:hover {
-        transform: scale(1.15);
-        transition: transform 0.3s ease;
-    }
-  .icon2_1 {
-    position: fixed; 
-    top: 48px; 
-    right: 120px;
-    height: 20px;
-  }
-    .icon2_1:hover {
-        transform: scale(1.15);
-        transition: transform 0.3s ease;
-    }
-
-.show {
+  
+  .show {
     opacity: 1;
     transform: translateY(0);
-}
-
-  .calendar {
-    margin-left: 30px;
   }
 
-
-  .clock1 {
-    margin-left: 30px
+  .calendar {
+    
   }
 
 .row {
@@ -259,7 +412,9 @@ html.lt-ie10 .row-no-gutter, .row-no-gutter {
 * @description  This section holds template default elements style declarations
 */
 html {
-  font-size: 60px; }
+  font-size: 60px; 
+  font-family: "Montserrat", sans-serif;
+}
   
   html .old-ie {
     display: none; }
@@ -268,12 +423,13 @@ html {
 
 body {
   font-family: "Montserrat", sans-serif;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 16px;
   line-height: 1.7;
   -webkit-text-size-adjust: none;
   color: #bababa;
   background: #fff; }
+
 
 /*
 * @subsection   Typography
@@ -282,14 +438,17 @@ body {
 */
 h1, h2, h3, h4, h5, h6,
 .heading-1, .heading-2, .heading-3, .heading-4, .heading-5, .heading-6 {
-    display: block;
-    color: #313131;
-    font-weight: 900;
+  display: block;
+  color: #313131;
+  font-weight: 900; 
+  font-family: "Montserrat", sans-serif;
+
 }
 
 h1, .heading-1 {
   font-size: 38px;
-  line-height: 1.33; }
+  line-height: 1.33; 
+}
 
 
 h2, .heading-2 {
@@ -374,7 +533,7 @@ hr {
   margin-top: 10px; }
 
 * + p {
-  margin-top: 20px; }
+  margin-top: 5px; }
 
 * + .index-list {
   margin-top: 20px; }
@@ -534,7 +693,8 @@ html body .page a.text-darken:hover {
   text-transform: uppercase; }
 
 .font-secondary {
-  font-family: "Merriweather", sans-serif; }
+   font-family: "Montserrat", sans-serif;
+; }
 
 /*
 * @subsection   Visibility System
@@ -4969,7 +5129,8 @@ html:not(.lt-ie10) .not-animated {
 
 [class*='fa-']:before {
   font-weight: 400;
-  font-family: 'FontAwesome'; }
+  font-family: "Montserrat", sans-serif;
+   }
 
 @font-face {
   font-family: 'Hotel Regular';
@@ -4980,7 +5141,7 @@ html:not(.lt-ie10) .not-animated {
 [class^="hotel-icon-"]:before,
 [class*=" hotel-icon-"]:before,
 .hotel-ico {
-  font-family: "Hotel Regular";
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: inherit;
@@ -5096,7 +5257,7 @@ html:not(.lt-ie10) .not-animated {
   src: local("Material Icons"), local("MaterialIcons-Regular"), url(../fonts/MaterialIcons-Regular.woff2) format("woff2"), url(../fonts/MaterialIcons-Regular.woff) format("woff"), url(../fonts/MaterialIcons-Regular.ttf) format("truetype"); }
 .material-icons-ico,
 [class*="material-icons-"]:before {
-  font-family: 'Material Icons';
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: inherit; }
@@ -7516,13 +7677,14 @@ html:not(.lt-ie10) .not-animated {
 
 .btn2 {
   position: relative;
-  
+  font-family: "Montserrat", sans-serif;
+
   border-radius:20px;
   display: inline-block;
   max-width: 100%;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1.2;
-  letter-spacing: 0.035em;
+  letter-spacing: 0.05em;
   text-align: center;
   white-space: nowrap;
   border-style: solid;
@@ -7531,8 +7693,7 @@ html:not(.lt-ie10) .not-animated {
   vertical-align: middle;
   z-index: 1;
   text-decoration: none; }
-  .btn2:hover {
-    transform: scale(1.05);
+  .btn:hover {
     color: inherit;
     text-decoration: none; }
 
@@ -7556,19 +7717,10 @@ html:not(.lt-ie10) .not-animated {
     text-decoration: none; }
 
 .btn-md {
-    border-width: 1px;
-    border-color: #F36501;
-    padding: 17px 32px;
-    font-size: 14px;
-    line-height: 18px;
-}
-
-.btn-md1 {
-    background-image: linear-gradient(90deg,#FFC90A, #F36501, #FF0701);
-    padding: 17px 32px;
-    font-size: 14px;
-    line-height: 18px;
-}
+  border-width: 1px;
+  padding: 14px 32px;
+  font-size: 14px;
+  line-height: 18px; }
 
 .btn-default {
   color: #bababa;
@@ -7660,15 +7812,8 @@ a.icon-primary:hover {
  * @subsection   Brand
  */
 .textik {
-   margin-left: 80px;
-   margin-bottom: 20px;
-
-    /*width: 322px;
-    height: 24px;
-    top: 777px;
-    left: 80px;
-    gap: 0px;
-    opacity: 0px;*/
+  margin-left: 80px;
+  margin-bottom: 20px;
 }
 
 .foto {
@@ -7677,27 +7822,25 @@ a.icon-primary:hover {
 }
 
 .brand {
+  font-family: "Montserrat", sans-serif;
+
   position: relative;
   display: inline-block;
   /*padding: 34px 0;*/ }
-.brand__name {
+  .brand__name {
     -webkit-transform: translateX(7px);
     transform: translateX(7px);
-    margin-left: 75px;
-    margin-bottom: 53px;
-    font-size: 64px;
+    margin-left: 80px;
+    margin-bottom: 20px;
+    font-size: 40px;
     font-weight: 900;
     line-height: 1;
-    letter-spacing: 0.035em;
-    color: #fff;
+    /*letter-spacing: 0.3em;*/
+    /*text-transform: uppercase;*/
+    color: #fff; }
 
-   /* font-family: Montserrat;
-    font-size: 64px;
-    font-weight: 900;
-    line-height: 76.49px;
-    letter-spacing: 0.035em;
-    text-align: left;*/
-}
+  
+  
 
 /*
  * @subsection   Box
@@ -7706,8 +7849,7 @@ a.icon-primary:hover {
 * @subsection Box
 */
 .box__left {
-    padding-bottom: 30px;
-}
+  padding-bottom: 30px; }
 
 .box__right {
   padding-top: 30px; }
@@ -7758,18 +7900,21 @@ a.icon-primary:hover {
 .quote {
   position: relative; }
   .quote q {
-    font-family: "Merriweather", sans-serif;
+    font-family: "Montserrat", sans-serif;
+
     letter-spacing: 0.025em;
     color: #313131; }
     .quote q mark {
       display: inline;
-      font-family: "Merriweather Sans", sans-serif;
+      font-family: "Montserrat", sans-serif;
+
       text-decoration: underline;
       background: transparent;
       color: inherit; }
     .quote q:before, .quote q:after {
       display: inline-block;
-      font-family: "Material Icons";
+      font-family: "Montserrat", sans-serif;
+
       font-size: 36px;
       line-height: 18px;
       vertical-align: middle; }
@@ -7818,7 +7963,8 @@ a.icon-primary:hover {
       top: 0;
       font-weight: 400;
       font-size: 1em;
-      font-family: "FontAwesome";
+      font-family: "Montserrat", sans-serif;
+      ;
       color: #ada068; }
     .marked-list > li + li {
       margin-top: 10px; }
@@ -7903,6 +8049,8 @@ a.icon-primary:hover {
 * @subsection   Link
 */
 .link {
+  font-family: "Montserrat", sans-serif;
+
   display: inline-block; }
 
 .link-1 {
@@ -8242,13 +8390,13 @@ button.swiper-pagination-bullet {
   cursor: pointer; }
 
 .swiper-pagination-white .swiper-pagination-bullet {
-  background: #fff; }
+  background: #FFC90A; }
 
 .swiper-pagination-bullet-active:before {
-  background: #fff; }
+  background: #FFC90A; }
 
 .swiper-pagination-white .swiper-pagination-bullet-active {
-  background: #fff; }
+  background: #FFC90A; }
 
 .swiper-pagination-black .swiper-pagination-bullet-active {
   background: #000; }
@@ -8576,24 +8724,17 @@ button.swiper-pagination-bullet {
 .page-header address {
   letter-spacing: 0.05em; }
 .page-header p {
-  font-size: 19px;
   font-weight: 300;
-  letter-spacing: 0.035em;
+  letter-spacing: 0.025em;
   color: #fff; }
-/*font-family: Montserrat;
-font-size: 20px;
-font-weight: 300;
-line-height: 23.9px;
-letter-spacing: 0.035em;
-text-align: left;*/
+
 /*
 * @section      Page Content
 * @description  This section holds specific style redeclarations for some
 *               of common elements in page content
 */
 .desktop {
-    min-height: 100vh;
-}
+  min-height: 100vh; }
 
 /*
 * @section      Page Footer

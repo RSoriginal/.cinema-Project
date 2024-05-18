@@ -1,0 +1,121 @@
+﻿@{
+    ViewData["Title"] = "Movie Review";
+}
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<CinemaUser> SignInManager
+@inject UserManager<CinemaUser> UserManager
+<!DOCTYPE html>
+<html lang="en" class="wide smoothscroll wow-animation">
+<head>
+    <!-- Site Title -->
+    <title>Home</title>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+    <!-- Stylesheets -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <!--<link href='//fonts.googleapis.com/css?family=Merriweather:400italic%7CMerriweather+Sans:300,400,700' rel='stylesheet' type='text/css'>-->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="styles/brows1.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+
+    <style>
+        body {
+            background-image: url('images/image1.png'); /* Путь к изображению */
+            background-size: cover; /* Растягивает изображение на всю область */
+            background-repeat: no-repeat; /* Запрещает повторять изображение */
+        }
+    </style>
+</head>
+<body>
+    <!-- The Main Wrapper -->
+    <div class="page">
+
+        <header class="page-header">
+            <div class="header1">
+                <div class="logo">
+                    <img src="images/logo.png" alt="Логотип">
+                </div>
+                <div class="nav">
+                    @* <a href="index.html">Головна</a> *@
+                    @* <div class="nav-link"> *@
+                    @Html.ActionLink("Головна", "Index", "Home", null, new { @class = "nav-link" })
+                    @* <a href="films.html">Фільми</a> *@
+                    @* </div> *@
+                    @Html.ActionLink("Фільми", "Index", "Movies", null, new { @class = "nav-link" })
+                    @* <a href="rozkl1.html">Розклад</a> *@
+                    @Html.ActionLink("Розклад", "Schedule", "Movies", null, new { @class = "nav-link" })
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <a href="~/Identity/Account/Manage/Index">
+                            <img src="images/icon_kab.png" alt="Іконка головного кабинета" class="icon2" id="icon">
+                        </a>
+                        <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <img src="images/icon_logout.png" alt="Іконка виходу з кабінета" class="icon2_1" id="icon">
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-controller="Account" asp-action="Login">
+                            <img src="images/icon_kab.png" alt="Иконка головного кабинета" class="icon2" id="icon">
+                        </a>
+                    }
+                </div>
+            </div>
+
+        </header>
+
+    </div>
+    <div class="container_brows1 text-left">
+        <p class="nazva_brows1"> Дюна: Частина друга </p>
+        <p class="text-brows1">
+            «Дюна: Частина друга» розкаже про міфічну подорож Пола<br>
+            Атріда та фременів на шляху помсти заколотникам, які знищили<br>
+            його родину. Між коханням усього свого життя та долею відомого<br>
+            всесвіту він обирає боротьбу проти жахливого майбутнього, яке<br>
+            лиш він може передбачити.
+        </p>
+    </div>
+    <div class="container_brows1_right">
+        <p>Дені Вільньов <span class="byelow">:Режисер</span></p>
+        <p>
+            Стівен Маккінлі Гендерсон, Леа Сейду, Стелл <span class="byelow">:У головних ролях</span><br>
+            Тімоті Шаламе, Зендея, Ребекка Ферґюсон, Джош Бролін, Остін Батлер,<br>
+            Флоренс П‘ю, Дейв Батіста, Крістофер Вокен
+        </p>
+        <p>8,7 <span class="byelow">:Рейтинг</span></p>
+        <p>Екшн, Фантастика, Пригоди, Бойовик <span class="byelow">:Жанр</span></p>
+        <p>США <span class="byelow">:Країна</span></p>
+        <p>українська <span class="byelow">:Мова</span></p>
+        <p>2 год 46 хв <span class="byelow">:Тривалість</span></p>
+        <p>28.02.2024 - 24.04.2024 <span class="byelow">:Період прокату</span></p>
+
+    </div>
+    <div class="carousel-container">
+        <h7>Акторський склад:</h7>
+        <div class="carousel">
+            <img src="images/actors/Group 2003.png" alt="Актер 1">
+            <img src="images/actors/Group 2004.png" alt="Актер 2">
+            <img src="images/actors/Group 2005.png" alt="Актер 3">
+            <img src="images/actors/Group 2006.png" alt="Актер 4">
+            <img src="images/actors/Group 2007.png" alt="Актер 5">
+            <img src="images/actors/Group 2008.png" alt="Актер 6">
+            <img src="images/actors/Group 2009.png" alt="Актер 7">
+            <img src="images/actors/Group 2010.png" alt="Актер 8">
+
+            <!-- Добавьте остальных актеров -->
+        </div>
+    </div>
+
+
+
+    <!-- Core Scripts -->
+    <script src="js/core.min.js"></script>
+    <!-- Additional Functionality Scripts -->
+    <script src="js/script.js"></script>
+    <!-- coded by ATOM -->
+</body>
+</html>

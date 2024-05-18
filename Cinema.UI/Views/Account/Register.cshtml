@@ -1,0 +1,45 @@
+﻿@model YourNamespace.Models.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+<link rel="stylesheet" href="~/css/styles-login.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,300&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<div class="container">
+    <div class="form-frame" id="register-frame">
+        <div class="form-header">
+            <a asp-controller="Account" asp-action="Login" class="tab">УВІЙТИ</a>
+            <a class="tab active">ЗАРЕЄСТРУВАТИСЯ</a>
+        </div>
+        <h2>РЕЄСТРАЦІЯ НОВОГО КОРИСТУВАЧА</h2>
+        <form asp-action="Register" method="post">
+            <label for="register-email">Email</label>
+            <input type="text" id="register-email" name="Email" class="form-control" asp-for="Email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+            
+            <label for="register-password">Пароль</label>
+            <input type="password" id="register-password" name="Password" class="form-control" asp-for="Password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+             
+            <label for="register-confirm-password">Підтвердження паролю</label>
+            <input type="password" id="register-confirm-password" name="ConfirmPassword" class="form-control" asp-for="ConfirmPassword" />
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            
+            <div class="terms">
+                РЕЄСТРУЮЧИСЬ, ВИ ПОГОДЖУЄТЕСЯ
+                <div class="terms1">З НАШИМИ УМОВАМИ</div>
+            </div>
+            <button type="submit" class="submit-btn">СТВОРИТИ АККАУНТ</button>
+            <div class="footer-text">
+                ВЖЕ Є АККАУНТ? <a asp-controller="Account" asp-action="Login">ПЕРЕЙДІТЬ ДО СВОГО ОБЛІКОВОГО ЗАПИСУ</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

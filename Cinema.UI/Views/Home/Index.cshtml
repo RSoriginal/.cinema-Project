@@ -56,12 +56,15 @@
                     @if (SignInManager.IsSignedIn(User))
                     {
                         <a href="~/Identity/Account/Manage/Index">
-                            <img src="images/icon_kab.png" alt="Иконка головного кабинета" class="icon2" id="icon">
+                            <img src="images/icon_kab.png" alt="Іконка головного кабинета" class="icon2" id="icon">
+                        </a>
+                        <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <img src="images/icon_logout.png" alt="Іконка виходу з кабінета" class="icon2_1" id="icon">
                         </a>
                     }
                     else
                     {
-                        <a href="~/Identity/Account/Login">
+                        <a asp-controller="Account" asp-action="Login">
                             <img src="images/icon_kab.png" alt="Иконка головного кабинета" class="icon2" id="icon">
                         </a>
                     }
@@ -90,7 +93,8 @@
                                 <section class="btn-cord">
                                     <!--Кнопка-->
                                     <div class="butoon1">
-                                        <a href="#" class="btn2 btn-md1 butoon2">Забронювати квитки</a>
+                                        @* <a href="#" class="btn2 btn-md1 butoon2">Забронювати квитки</a> *@
+                                        @Html.ActionLink("Забронювати квитки", "Index", "Tickets", null, new { @class = "btn2 btn-md1 butoon2" })
                                         <a href="#" class="btn2 btn-md butoon3 ">Дивитися трейлер</a>
                                         <a href="#" class="btn2 btn-md butoon3 ">Огляд</a>
                                     </div>
@@ -119,9 +123,11 @@
                                 <section class="btn-cord">
                                     <!--Кнопка-->
                                     <div class="butoon1">
-                                        <a href="#" class="btn2 btn-md1 butoon2">Забронювати квитки</a>
+                                        @* <a href="#" class="btn2 btn-md1 butoon2">Забронювати квитки</a> *@
+                                        @Html.ActionLink("Забронювати квитки", "Index", "Tickets", null, new { @class = "btn2 btn-md1 butoon2" })
                                         <a href="#" class="btn2 btn-md butoon3 ">Дивитися трейлер</a>
-                                        <a href="#" class="btn2 btn-md butoon3 ">Огляд</a>
+                                        @* <a href="#" class="btn2 btn-md butoon3 ">Огляд</a> *@
+                                        @Html.ActionLink("Огляд", "MovieReview", "Home", null, new { @class = "btn2 btn-md butoon3" })
                                     </div>
                                 </section>
                             </div>
@@ -146,7 +152,8 @@
                                 <section class="btn-cord">
                                     <!--Кнопка-->
                                     <div class="butoon1">
-                                        <a href="#" class="btn2 btn-md1 butoon2">Забронювати квитки</a>
+                                        @* <a href="#" class="btn2 btn-md1 butoon2">Забронювати квитки</a> *@
+                                        @Html.ActionLink("Забронювати квитки", "Index", "Tickets", null, new { @class = "btn2 btn-md1 butoon2" })
                                         <a href="#" class="btn2 btn-md butoon3 ">Дивитися трейлер</a>
                                         <a href="#" class="btn2 btn-md butoon3 ">Огляд</a>
                                     </div>

@@ -17,6 +17,10 @@ namespace Cinema.Controllers
         {
             return View();
         }
+        public IActionResult MovieReview()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
