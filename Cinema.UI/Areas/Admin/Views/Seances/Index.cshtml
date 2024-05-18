@@ -1,7 +1,9 @@
-﻿@model IEnumerable<Cinema.Core.Domain.Entities.Seance>
+﻿@model IEnumerable<SeancesViewModel>
 
 @{
     ViewData["Title"] = "Index";
+    var movieList = (IEnumerable<SelectListItem>)ViewBag.MovieId;
+    var movieDictionary = movieList.ToDictionary(item => int.Parse(item.Value), item => item.Text);
 }
 
 <h1>Index</h1>
@@ -19,7 +21,7 @@
                 @Html.DisplayNameFor(model => model.AssignedAt)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Movie)
+                @Html.DisplayNameFor(model => model.MovieId)
             </th>
             <th></th>
         </tr>
@@ -34,7 +36,7 @@
                 @Html.DisplayFor(modelItem => item.AssignedAt)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Movie.Actors)
+                    @movieDictionary[item.MovieId]
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

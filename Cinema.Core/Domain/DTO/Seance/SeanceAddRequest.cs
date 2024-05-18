@@ -4,7 +4,11 @@ namespace Cinema.Core.Domain.DTO.Seance
 {
     public class SeanceAddRequest
     {
-       public SeanceAddRequest(int maxTickets, DateTime assignedAt, int movieId)
+        public SeanceAddRequest()
+        {
+            
+        }
+        public SeanceAddRequest(int maxTickets, DateTime assignedAt, int movieId)
         {
             MaxTickets = maxTickets;
             AssignedAt = assignedAt;

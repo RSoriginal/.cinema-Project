@@ -28,6 +28,7 @@ builder.Services.AddIdentity<CinemaUser, CinemaRole>(options =>
 builder.Services.AddRazorPages();
 builder.Services.AddTransient<IMovieService, MovieService>();
 builder.Services.AddTransient<ITicketService, TicketService>();
+builder.Services.AddTransient<ISeanceService, SeanceService>();
 
 builder.Services.AddTransient<IEmailSender, SmtpEmailSender>((x) =>
 {
