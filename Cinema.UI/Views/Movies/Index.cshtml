@@ -1,9 +1,12 @@
+@{
+    ViewData["Title"] = "Movies";
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Website</title>
+    <title>Movies</title>
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -213,6 +216,8 @@
       </div>
     </div>
   </section>
-   <a href="index.html" class="back-link">повернутися на головну</a>
+   @Html.ActionLink("повернутися на головну", "Index", "Home", null, new { @class = "back-link" })
+   @* <a href="index.html" class="back-link">повернутися на головну</a> *@
 </main>
 </body>
+</html>

@@ -166,9 +166,16 @@ address {
   line-height: inherit;
 }
 
+.nav-logout {
+    position: fixed;
+    top: 48px; 
+    right: 80px; 
+    height: 20px;
+}
+
 ol,
 ul {
-  padding-left: 2rem;
+    padding-left: 2rem;
 }
 
 ol,

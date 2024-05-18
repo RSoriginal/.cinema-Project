@@ -4,7 +4,7 @@
   }
     
     .schedule-container {
-      justify-content: flex-end;
+        justify-content: flex-end;
       background-color: #000;
       /*display: flex;*/
       flex-direction: column;
@@ -45,7 +45,7 @@
     }
   
       .date-tab-today {
-      color: #ffe600;
+      color: #ffffff;
       font-family: Montserrat, sans-serif;
       flex-grow: 1;
       flex-basis: auto;
@@ -53,10 +53,12 @@
   
     .date-tab-tomorrow,
     .date-tab-next-week {
+      color: #FFC90A;
       font-family: Montserrat, sans-serif;
     }
   
     .date-tab-next-week {
+      color: #ffffff;
       flex-grow: 1;
       flex-basis: auto;
     }
@@ -142,21 +144,19 @@
     .showtime-item + .showtime-item {
       margin-top: 16px;
     }
-  
-
-  
-    .back-link {
+   
+   .back-link {
         align-self: center;
         margin-top: 90px;
         padding: 33px 28px;
         border-radius: 100px;
-        border-image: linear-gradient(to right, #ff0000, #f36600) 1 1 10 stretch; /* Gradient border */
-        border: 1px solid #f36600; /* Fallback solid border */
+        border-image: linear-gradient(to right, #ff0000, #f36600) 1 1 10 stretch; 
+        border: 1px solid #f36600; 
             font: 400 20px Montserrat, sans-serif;
         color: #fff;
         text-align: center;
         text-transform: uppercase;
         justify-content: center;
-      }
+      }        
 
       

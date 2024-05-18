@@ -1,0 +1,45 @@
+﻿@model YourNamespace.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+<link rel="stylesheet" href="~/css/styles-login.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,300&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<div class="container">
+    <div class="form-frame" id="login-frame">
+        <div class="form-header">
+            <a class="tab active">УВІЙТИ</a>
+            <a asp-controller="Account" asp-action="Register" class="tab">ЗАРЕЄСТРУВАТИСЯ</a>
+        </div>
+        <h2>ВХІД ДО ОСОБИСТОГО КАБІНЕТУ</h2>
+        <form asp-action="Login" method="post">
+            <label for="login-email">Email</label>
+            <input type="text" id="login-email" name="Email" asp-for="Email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+
+            <label for="login-password">Пароль</label>
+            <input type="password" id="login-password" name="Password" asp-for="Password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+
+            <div class="extra-options">
+                <a href="#">ЗАБУЛИ СВІЙ ПАРОЛЬ?</a>
+                <label class="remember-me" for="remember-me">
+                    <input type="checkbox" id="remember-me" name="RememberMe" asp-for="RememberMe" />
+                    ЗАПАМ’ЯТАТИ МЕНЕ
+                </label>
+            </div>
+
+            <button type="submit" class="submit-btn">УВІЙТИ</button>
+
+            <div class="footer-text">
+                <a asp-controller="Account" asp-action="Register">ЗАРЕЄСТРУВАТИСЯ</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

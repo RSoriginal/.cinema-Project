@@ -1,7 +1,9 @@
 ﻿@{
     ViewData["Title"] = "Movies Booking";
 }
-
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<CinemaUser> SignInManager
+@inject UserManager<CinemaUser> UserManager
 <!DOCTYPE html>
 <html lang="en" class="wide smoothscroll wow-animation">
 <head>
@@ -14,6 +16,9 @@
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <!--<link href='//fonts.googleapis.com/css?family=Merriweather:400italic%7CMerriweather+Sans:300,400,700' rel='stylesheet' type='text/css'>-->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
     <!--[if lt IE 10]>
     <script src="js/html5shiv.min.js"></script>
@@ -40,10 +45,29 @@
                     <img src="images/logo.png" alt="Логотип">
                 </div>
                 <div class="nav">
-                    <a href="index.html">Головна</a>
-                    <a href="films.html">Фільми</a>
-                    <a href="rozkl1.html">Розклад</a>
-                    <img src="images/icon_kab.png" alt="Иконка головного кабинета" class="icon2" id="icon">
+                    @* <a href="index.html">Головна</a> *@
+                    @* <div class="nav-link"> *@
+                    @Html.ActionLink("Головна", "Index", "Home", null, new { @class = "nav-link" })
+                    @* <a href="films.html">Фільми</a> *@
+                    @* </div> *@
+                    @Html.ActionLink("Фільми", "Index", "Movies", null, new { @class = "nav-link" })
+                    @* <a href="rozkl1.html">Розклад</a> *@
+                    @Html.ActionLink("Розклад", "Schedule", "Movies", null, new { @class = "nav-link" }) 
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <a href="~/Identity/Account/Manage/Index">
+                            <img src="images/icon_kab.png" alt="Іконка головного кабинета" class="icon2" id="icon">
+                        </a>
+                        <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <img src="images/icon_logout.png" alt="Іконка виходу з кабінета" class="icon2_1" id="icon">
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-controller="Account" asp-action="Login">
+                            <img src="images/icon_kab.png" alt="Иконка головного кабинета" class="icon2" id="icon">
+                        </a>
+                    }
                 </div>
             </div>
             <!-- Swiper -->
@@ -53,14 +77,14 @@
                     <div class="swiper-slide" data-slide-bg="images/image1.png">
                         <div class="swiper-slide-caption">
                             <div class="container text-left">
-                                <div class="brand__name">Дюна Частина друга</div>
+                                <div class="brand__name">Дюна: Частина друга</div>
 
                                 </a>
                                 <div>
                                     <p class="textik">
                                         Екшн, Фантастика, Пригоди, Бойовик
-                                        <img src="images/calendar.png" alt="Іконка календар" class="calendar">2024
-                                        <img src="images/clock.png" alt="Іконка календар" class="clock1">2 год 46 хв
+                                        <img src="images/calendar.png" alt="Іконка календар" class="calendar"> 2024
+                                        <img src="images/clock.png" alt="Іконка календар" class="clock1"> 2 год 46 хв
                                     </p>
                                 </div>
                                 <div>
@@ -69,7 +93,8 @@
                                 <section class="btn-cord">
                                     <!--Кнопка-->
                                     <div class="butoon1">
-                                        <a href="#" class="btn2 btn-md butoon2">Забронювати квитки</a>
+                                        @* <a href="#" class="btn2 btn-md1 butoon2">Забронювати квитки</a> *@
+                                        @Html.ActionLink("Забронювати квитки", "Index", "Tickets", null, new { @class = "btn2 btn-md1 butoon2" })
                                         <a href="#" class="btn2 btn-md butoon3 ">Дивитися трейлер</a>
                                         <a href="#" class="btn2 btn-md butoon3 ">Огляд</a>
                                     </div>
@@ -82,14 +107,14 @@
                     <div class="swiper-slide" data-slide-bg="images/image2.png">
                         <div class="swiper-slide-caption">
                             <div class="container text-left">
-                                <div class="brand__name">Дюна Частина друга</div>
+                                <div class="brand__name">Ебіґейл</div>
 
                                 </a>
                                 <div>
                                     <p class="textik">
-                                        Екшн, Фантастика, Пригоди, Бойовик
-                                        <img src="images/calendar.png" alt="Іконка календар" class="calendar">2024
-                                        <img src="images/clock.png" alt="Іконка календар" class="clock1">2 год 46 хв
+                                        Жахи, Трилер
+                                        <img src="images/calendar.png" alt="Іконка календар" class="calendar"> 2024
+                                        <img src="images/clock.png" alt="Іконка календар" class="clock1"> 1 год 47 хв
                                     </p>
                                 </div>
                                 <div>
@@ -98,9 +123,11 @@
                                 <section class="btn-cord">
                                     <!--Кнопка-->
                                     <div class="butoon1">
-                                        <a href="#" class="btn2 btn-md butoon2">Забронювати квитки</a>
+                                        @* <a href="#" class="btn2 btn-md1 butoon2">Забронювати квитки</a> *@
+                                        @Html.ActionLink("Забронювати квитки", "Index", "Tickets", null, new { @class = "btn2 btn-md1 butoon2" })
                                         <a href="#" class="btn2 btn-md butoon3 ">Дивитися трейлер</a>
-                                        <a href="#" class="btn2 btn-md butoon3 ">Огляд</a>
+                                        @* <a href="#" class="btn2 btn-md butoon3 ">Огляд</a> *@
+                                        @Html.ActionLink("Огляд", "MovieReview", "Home", null, new { @class = "btn2 btn-md butoon3" })
                                     </div>
                                 </section>
                             </div>
@@ -109,14 +136,14 @@
                     <div class="swiper-slide" data-slide-bg="images/image3.jpg">
                         <div class="swiper-slide-caption">
                             <div class="container text-left">
-                                <div class="brand__name">Дюна Частина друга</div>
+                                <div class="brand__name">Приборкувачка драконів</div>
 
                                 </a>
                                 <div>
                                     <p class="textik">
-                                        Екшн, Фантастика, Пригоди, Бойовик
-                                        <img src="images/calendar.png" alt="Іконка календар" class="calendar">2024
-                                        <img src="images/clock.png" alt="Іконка календар" class="clock1">2 год 46 хв
+                                        Пригоди, Анімація, Сімейний
+                                        <img src="images/calendar.png" alt="Іконка календар" class="calendar"> 2024
+                                        <img src="images/clock.png" alt="Іконка календар" class="clock1"> 1 год 38 хв
                                     </p>
                                 </div>
                                 <div>
@@ -125,7 +152,8 @@
                                 <section class="btn-cord">
                                     <!--Кнопка-->
                                     <div class="butoon1">
-                                        <a href="#" class="btn2 btn-md butoon2">Забронювати квитки</a>
+                                        @* <a href="#" class="btn2 btn-md1 butoon2">Забронювати квитки</a> *@
+                                        @Html.ActionLink("Забронювати квитки", "Index", "Tickets", null, new { @class = "btn2 btn-md1 butoon2" })
                                         <a href="#" class="btn2 btn-md butoon3 ">Дивитися трейлер</a>
                                         <a href="#" class="btn2 btn-md butoon3 ">Огляд</a>
                                     </div>

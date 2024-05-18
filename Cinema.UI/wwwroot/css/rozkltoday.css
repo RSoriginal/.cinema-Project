@@ -4,7 +4,7 @@
   }
     
     .schedule-container {
-      justify-content: flex-end;
+        justify-content: flex-end;
       background-color: #000;
       /*display: flex;*/
       flex-direction: column;
@@ -45,7 +45,7 @@
     }
   
       .date-tab-today {
-      color: #ffe600;
+      color: #ffffff;
       font-family: Montserrat, sans-serif;
       flex-grow: 1;
       flex-basis: auto;
@@ -53,10 +53,12 @@
   
     .date-tab-tomorrow,
     .date-tab-next-week {
+      color: #ffffff;
       font-family: Montserrat, sans-serif;
     }
   
     .date-tab-next-week {
+      color: #ffe600;
       flex-grow: 1;
       flex-basis: auto;
     }
