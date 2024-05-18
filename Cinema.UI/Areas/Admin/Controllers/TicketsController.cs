@@ -32,6 +32,8 @@ namespace Cinema.UI.Areas.Admin.Controllers
             {
                 ticketViewModels.Add(ticket.ToTicketViewModel());
             }
+            ViewBag.SeanceId = new SelectList(await _seanceService.GetSeancesAsync(), "Id", "AssignedAt");
+            ViewBag.UserId = new SelectList(_context.Set<CinemaUser>(), "Id", "UserName");
             return View(ticketViewModels);
         }
 
@@ -52,7 +54,7 @@ namespace Cinema.UI.Areas.Admin.Controllers
         {
             //ViewData["SeanceId"] = new SelectList(await _seanceService.GetSeancesAsync(), "Id", "Actors");
             ViewBag.SeanceId = new SelectList(await _seanceService.GetSeancesAsync(), "Id", "AssignedAt");
-            ViewBag.UserId = new SelectList(_context.Set<CinemaUser>(), "Id", "UserName");
+            ViewBag.UserId = new SelectList(_context.Set<CinemaUser>(), "Id", "UserName");            
             return View();
         }
 
@@ -69,7 +71,7 @@ namespace Cinema.UI.Areas.Admin.Controllers
             }
             ViewBag.SeanceId = new SelectList(await _seanceService.GetSeancesAsync(), "Id", "AssignedAt", ticketsViewModel.SeanceId);
             ViewBag.UserId = new SelectList(_context.Set<CinemaUser>(), "Id", "UserName", ticketsViewModel.UserId);
-            return View(ticketsViewModel);            
+            return View(ticketsViewModel);
         }
 
         // GET: TicketsController/Edit/5

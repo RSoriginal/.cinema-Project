@@ -11,7 +11,7 @@ namespace Cinema.UI.Areas.Admin.ViewModels
         public decimal Price { get; set; }
         public bool IsAvailable { get; set; }
         public int SeanceId { get; set; }    
-        public Guid UserId { get; set; }
+        public Guid? UserId { get; set; }
        
 
         public TicketAddRequest ToTicketAddRequest()

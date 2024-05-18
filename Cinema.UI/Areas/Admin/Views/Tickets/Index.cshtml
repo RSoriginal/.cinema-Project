@@ -1,6 +1,10 @@
 ﻿@model IEnumerable<TicketsViewModel>
 @{
     ViewData["Title"] = "Tickets";
+    var seanceList = (IEnumerable<SelectListItem>)ViewBag.SeanceId;
+    var seanceDictionary = seanceList.ToDictionary(item => int.Parse(item.Value), item => item.Text);
+    var userList = (IEnumerable<SelectListItem>)ViewBag.UserId;
+    var userDictionary = userList.ToDictionary(item => item.Value != null ? new Guid(item.Value) : Guid.Empty, item => item.Text);
 }
 <h1>Tickets</h1>
 
@@ -15,8 +19,8 @@
             <th>@Html.DisplayNameFor(model => model.SeatNumber)</th>
             <th>@Html.DisplayNameFor(model => model.Price)</th>
             <th>@Html.DisplayNameFor(model => model.IsAvailable)</th>
-            <th>@Html.DisplayNameFor(model => model.SeanceId)</th>
-            <th>@Html.DisplayNameFor(model => model.UserId)</th>
+            <th>Seance time</th>
+            <th>UserName</th>
         </tr>
     </thead>
     <tbody>
@@ -27,8 +31,17 @@
                 <td>@Html.DisplayFor(modelTicket => ticket.SeatNumber)</td>
                 <td>@Html.DisplayFor(modelTicket => ticket.Price)</td>
                 <td>@Html.DisplayFor(modelTicket => ticket.IsAvailable)</td>
-                <td>@Html.DisplayFor(modelTicket => ticket.SeanceId)</td>
-                <td>@Html.DisplayFor(modelTicket => ticket.UserId)</td>
+                <td>@seanceDictionary[ticket.SeanceId]</td>
+                <td>
+                    @if (userDictionary.ContainsKey(ticket.UserId.GetValueOrDefault()))
+                    {
+                        @userDictionary[ticket.UserId.GetValueOrDefault()]
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelTicket => ticket.UserId)
+                    }
+                </td>
                 <td>
                     <a asp-action="Details" asp-route-id="@ticket.Id">Details</a> |
                     <a asp-action="Edit" asp-route-id="@ticket.Id">Edit</a> |

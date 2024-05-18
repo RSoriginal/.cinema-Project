@@ -12,7 +12,7 @@ namespace Cinema.Core.Domain.DTO.Ticket
         public decimal Price { get; set; }
         public bool IsAvailable { get; set; }
         public int SeanceId { get; set; }
-        public Guid UserId { get; set; }
+        public Guid? UserId { get; set; }
 
         public override bool Equals(object? obj)
         {

@@ -29,7 +29,8 @@ namespace Cinema.UI.Areas.Admin.Controllers
         // GET: Admin/Seances
         public async Task<IActionResult> Index()
         {
-            var seances = await _seanceService.GetSeancesAsync();            
+            var seances = await _seanceService.GetSeancesAsync();
+            ViewBag.MovieId = new SelectList(_context.Set<Movie>(), "Id", "Name");
             return View(seances.Select(s => s.ToSeanceViewModel()).ToList());
         }
 
@@ -41,8 +42,8 @@ namespace Cinema.UI.Areas.Admin.Controllers
             {
                 return NotFound();
             }            
-            var seanceViewModel = seance.ToSeanceViewModel();  
-            return View(seanceViewModel);
+            var seancesViewModel = seance.ToSeanceViewModel();
+            return View(seancesViewModel);
         }
 
         // GET: Admin/Seances/Create
