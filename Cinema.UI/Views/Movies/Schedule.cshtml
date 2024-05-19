@@ -7,8 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Schedule</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="styles/styles1.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/styles/styles1.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -37,22 +37,23 @@
             <section class="movie-list">
                 <article class="movie-item">
                     <div class="movie-details">
-                        <img src="img/1.png" alt="" class="movie-poster">
+                        <img src="~/img/1.png" alt="" class="movie-poster">
                         <div class="showtime-list">
                             <time class="showtime-item">09:00</time>
                             <time class="showtime-item">11:45</time>
                         </div>
-                        <img src="img/2.png" alt="" class="movie-poster">
+                        <img src="~/img/2.png" alt="" class="movie-poster">
                         <div class="showtime-list">
                             <time class="showtime-item">11:45</time>
                         </div>
-                        <img src="img/3.png" alt="" class="movie-poster">
+                        <img src="~/img/3.png" alt="" class="movie-poster">
                         <div class="showtime-list">
                             <time class="showtime-item">14:30</time>
                         </div>
                     </div>
                 </article>
-                <a href="index.html" class="back-link">повернутися на головну</a>
+                @* <a href="index.html" class="back-link">повернутися на головну</a> *@
+                @Html.ActionLink("повернутися на головну", "Index", "Home", null, new { @class = "back-link" })
             </section>
 
         </main>
