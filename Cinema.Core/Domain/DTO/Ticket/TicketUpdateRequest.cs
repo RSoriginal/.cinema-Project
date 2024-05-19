@@ -4,7 +4,7 @@ namespace Cinema.Core.Domain.DTO.Ticket
     public class TicketUpdateRequest
     {
         public TicketUpdateRequest() {}
-        public TicketUpdateRequest(int seatNumber, decimal price, bool isAvailable, int seanceId, Guid userId) 
+        public TicketUpdateRequest(int seatNumber, decimal price, bool isAvailable, int seanceId, Guid? userId) 
         {
             SeatNumber = seatNumber;
             Price = price;

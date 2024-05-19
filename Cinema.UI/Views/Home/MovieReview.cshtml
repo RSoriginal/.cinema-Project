@@ -1,6 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Movie Review";
 }
+@model MovieResponse
+
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<CinemaUser> SignInManager
 @inject UserManager<CinemaUser> UserManager
@@ -25,7 +27,7 @@
 
     <style>
         body {
-            background-image: url(../images/image1.png); /* Путь к изображению */
+            background-image: url(@Model.Trailers); /* Путь к изображению */
             background-size: cover; /* Растягивает изображение на всю область */
             background-repeat: no-repeat; /* Запрещает повторять изображение */
         }
@@ -71,43 +73,27 @@
 
     </div>
     <div class="container_brows1 text-left">
-        <p class="nazva_brows1"> Дюна: Частина друга </p>
+        <p class="nazva_brows1"> @Model.Name </p>
         <p class="text-brows1">
-            «Дюна: Частина друга» розкаже про міфічну подорож Пола<br>
-            Атріда та фременів на шляху помсти заколотникам, які знищили<br>
-            його родину. Між коханням усього свого життя та долею відомого<br>
-            всесвіту він обирає боротьбу проти жахливого майбутнього, яке<br>
-            лиш він може передбачити.
+            @Model.Description
         </p>
     </div>
     <div class="container_brows1_right">
-        <p>Дені Вільньов <span class="byelow">:Режисер</span></p>
+        <p><span class="byelow"></span></p>
         <p>
-            Стівен Маккінлі Гендерсон, Леа Сейду, Стелл <span class="byelow">:У головних ролях</span><br>
-            Тімоті Шаламе, Зендея, Ребекка Ферґюсон, Джош Бролін, Остін Батлер,<br>
-            Флоренс П‘ю, Дейв Батіста, Крістофер Вокен
+            <span class="byelow"></span><br>
+            <br>
+
         </p>
-        <p>8,7 <span class="byelow">:Рейтинг</span></p>
-        <p>Екшн, Фантастика, Пригоди, Бойовик <span class="byelow">:Жанр</span></p>
-        <p>США <span class="byelow">:Країна</span></p>
-        <p>українська <span class="byelow">:Мова</span></p>
-        <p>2 год 46 хв <span class="byelow">:Тривалість</span></p>
-        <p>28.02.2024 - 24.04.2024 <span class="byelow">:Період прокату</span></p>
+        <p>@Model.Rating<span class="byelow">:Рейтинг</span></p>
+        <p>@Model.Genre<span class="byelow">:Жанр</span></p>
+        <p>@Model.Duration.Hour год @Model.Duration.Minute хв <span class="byelow">:Тривалість</span></p>
 
     </div>
     <div class="carousel-container">
         <h7>Акторський склад:</h7>
         <div class="carousel">
-            <img src="~/images/actors/Group 2003.png" alt="Актер 1">
-            <img src="~/images/actors/Group 2004.png" alt="Актер 2">
-            <img src="~/images/actors/Group 2005.png" alt="Актер 3">
-            <img src="~/images/actors/Group 2006.png" alt="Актер 4">
-            <img src="~/images/actors/Group 2007.png" alt="Актер 5">
-            <img src="~/images/actors/Group 2008.png" alt="Актер 6">
-            <img src="~/images/actors/Group 2009.png" alt="Актер 7">
-            <img src="~/images/actors/Group 2010.png" alt="Актер 8">
-
-            <!-- Добавьте остальных актеров -->
+            @Model.Actors
         </div>
     </div>
 

@@ -35,6 +35,10 @@ namespace Cinema.Core.Domain.DTO.Ticket
         {
             return JsonSerializer.Serialize(this);
         }
+        public TicketUpdateRequest ToUpdateRequest()
+        {
+            return new TicketUpdateRequest(SeatNumber, Price, IsAvailable, SeanceId, UserId);
+        }
     }
     public static class TicketExtensions
     {

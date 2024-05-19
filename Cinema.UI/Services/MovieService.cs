@@ -41,7 +41,7 @@ namespace Cinema.UI.Services
         public async Task<MovieResponse> GetMovieAsync(int id)
         {
             var context = _context.Movies.Include(x => x.Seances);
-            var movie = await context.FirstOrDefaultAsync() ?? throw new ArgumentException($"Not possible to find a product by id:{id}", nameof(id));
+            var movie = await context.Where(x => x.Id == id).FirstOrDefaultAsync() ?? throw new ArgumentException($"Not possible to find a product by id:{id}", nameof(id));
             return movie.ToMovieResponse();
         }
 

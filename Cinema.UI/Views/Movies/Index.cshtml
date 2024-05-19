@@ -1,3 +1,4 @@
+@model IEnumerable<MovieViewModel>
 @{
     ViewData["Title"] = "Movies";
 }
@@ -10,214 +11,68 @@
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
-    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
 </head>
-<body style="margin: 0;"> 
- <main class="main-container">
-  <nav class="nav-menu">
-    <div class="nav-item">Зараз у кіно</div>
-    <div class="nav-item">Скоро у прокаті</div>
-    <div class="nav-item">Архів</div>
-    <link rel="stylesheet" href="styles/styles.css">
-    </nav>
-  <section>
-    <header class="section-title">
-      <h2 class="section-title-text">Зараз у кіно</h2>
-      <div class="section-divider"></div>
-      <link rel="stylesheet" href="styles/styles.css">
-    </header>
-    <div class="movie-grid">
-      <div class="movie-row">
-        <div class="movie-col">
-          <article class="movie-card">
-            <div class="movie-poster">
-              <img src="img/1.png" alt="movie poster" />
+<body style="margin: 0;">
+    <main class="main-container">
+        <nav class="nav-menu">
+            <div class="nav-item">Зараз у кіно</div>
+            <link rel="stylesheet" href="styles/styles.css">
+        </nav>
+        <section>
+            <header class="section-title">
+                <h2 class="section-title-text">Зараз у кіно</h2>
+                <div class="section-divider"></div>
                 <link rel="stylesheet" href="styles/styles.css">
+            </header>
+        </section>
+
+        <section>
+            <div class="movie-grid">
+                @{
+                    int row = 0;
+                    bool IsLastRow = false;
+                }
+                @while (!IsLastRow)
+                {
+                    <div class="movie-row">
+                        @for (int g = row * 4; g <= (row * 4 + 3); g++)
+                        {
+                            @if (g < Model.Count())
+                            {
+                                <div class="movie-poster-col">
+                                    <img class="movie-poster-img" src="@Model.ElementAt(g).Trailers" alt="Movie poster" />
+                                    <a asp-controller="Home" asp-action="MovieReview" asp-route-movieId="@Model.ElementAt(g).Id">@Model.ElementAt(g).Name</a>
+                                </div>
+                            }
+                            else{
+                                IsLastRow = true;
+                            }
+                        }
+                    </div>
+                    row++;
+                }
             </div>
-          </article>
+        </section>
+
+
+
+
+
+        @*                 <div class="movie-col">
+        <article class="movie-card">
+        <div class="movie-poster">
+        <img src="img/1.png" alt="movie poster" />
+        <link rel="stylesheet" href="styles/styles.css">
         </div>
-        <div class="movie-poster-col">
-          <img class="movie-poster-img" src="img/2.png" alt="Movie poster" />
-          <link rel="stylesheet" href="styles/styles.css">
-        </div>
-        <div class="movie-poster-col">
-          <img class="movie-poster-img" src="img/3.png" alt="Movie poster" />
-          <link rel="stylesheet" href="styles/styles.css">
-        </div>
-        <div class="movie-poster-col">
-          <img class="movie-poster-img" src="img/4.png" alt="Movie poster" />
-          <link rel="stylesheet" href="styles/styles.css">
-        </div>
-      </div>
-    </div>
-  </section>
-  <section>
-    <div class="movie-grid">
-      <div class="movie-row">
-        <div class="movie-col">
-          <img class="movie-poster-img" src="img/5.png" alt="Movie poster" />
-         <link rel="stylesheet" href="styles/styles.css">
-        </div>
-        <div class="movie-poster-col">
-          <img class="movie-poster-img" src="img/6.png" alt="Movie poster" />
-          <link rel="stylesheet" href="styles/styles.css">
-        </div>
-        <div class="movie-poster-col">
-          <img class="movie-poster-img" src="img/7.png" alt="Movie poster" />
-          <link rel="stylesheet" href="styles/styles.css">
-        </div>
-        <div class="movie-poster-col">
-          <img class="movie-poster-img" src="img/8.png" alt="Movie poster" />
-          <link rel="stylesheet" href="styles/styles.css">
-        </div>
-      </div>
-    </div>
-  </section>
-  <section>
-    <div class="movie-grid">
-      <div class="movie-row">
-        <div class="movie-col">
-          <img class="movie-poster-img" src="img/9.png" alt="Movie poster" />
-        </div>
-        <div class="movie-poster-col">
-          <img class="movie-poster-img" src="img/10.png" alt="Movie poster" />
-        </div>
-        <div class="movie-poster-col">
-          <img class="movie-poster-img" src="img/11.png" alt="Movie poster" />
-        </div>
-        <div class="movie-poster-col">
-          <img class="movie-poster-img" src="img/12.png" alt="Movie poster" />
-        </div>
-      </div>
-    </div>
-  </section>
-  <section>
-    <header class="section-title">
-      <h2 class="section-title-text">Скоро в прокаті</h2>
-      <div class="section-divider"></div>
-      <link rel="stylesheet" href="styles/styles.css">
-    </header>
-    <div class="movie-grid">
-      <div class="movie-row">
-        <div class="movie-col">
-          <article class="movie-card">
-            <div class="movie-poster">
-              <img src="img/14.png" alt="movie poster" />
-              <link rel="stylesheet" href="styles/styles.css">
-            </div>
-          </article>
-        </div>
-        <div class="movie-poster-col">
-          <img class="movie-poster-img" src="img/15.png" alt="Movie poster" />
-          <link rel="stylesheet" href="styles/styles.css">
-        </div>
-        <div class="movie-poster-col">
-          <img class="movie-poster-img" src="img/16.png" alt="Movie poster" />
-          <link rel="stylesheet" href="styles/styles.css">
-        </div>
-        <div class="movie-poster-col">
-          <img class="movie-poster-img" src="img/17.png" alt="Movie poster" />
-          <link rel="stylesheet" href="styles/styles.css">
-        </div>
-      </div>
-    </div>
-  </section>
-  <section>
-    <div class="movie-grid">
-      <div class="movie-row">
-        <div class="movie-col">
-          <img class="movie-poster-img" src="img/18.png" alt="Movie poster" />
-         <link rel="stylesheet" href="styles/styles.css">
-        </div>
-        <div class="movie-poster-col">
-          <img class="movie-poster-img" src="img/19.png" alt="Movie poster" />
-          <link rel="stylesheet" href="styles/styles.css">
-        </div>
-        <div class="movie-poster-col">
-          <img class="movie-poster-img" src="img/20.png" alt="Movie poster" />
-          <link rel="stylesheet" href="styles/styles.css">
-        </div>
-        <div class="movie-poster-col">
-          <img class="movie-poster-img" src="img/21.png" alt="Movie poster" />
-          <link rel="stylesheet" href="styles/styles.css">
-        </div>
-      </div>
-    </div>
-  </section>
-  <section>
-    <div class="movie-grid">
-      <div class="movie-row">
-        <div class="movie-col">
-          <img class="movie-poster-img" src="img/22.png" alt="Movie poster" />
-        </div>
-        <div class="movie-poster-col">
-          <img class="movie-poster-img" src="img/23.png" alt="Movie poster" />
-        </div>
-        <div class="movie-poster-col">
-          <img class="movie-poster-img" src="img/24.png" alt="Movie poster" />
-        </div>
-        <div class="movie-poster-col">
-          <img class="movie-poster-img" src="img/25.png" alt="Movie poster" />
-        </div>
-      </div>
-    </div>
-  </section>
-  <section>
-    <header class="section-title">
-      <h2 class="section-title-text">Наші архіви</h2>
-      <div class="section-divider"></div>
-      <link rel="stylesheet" href="styles/styles.css">
-    </header>
-    <div class="movie-grid">
-      <div class="movie-row">
-        <div class="movie-col">
-          <article class="movie-card">
-            <div class="movie-poster">
-              <img src="img/26.png" alt="Нічні незнайомці movie poster" />
-              <link rel="stylesheet" href="styles/styles.css">
-            </div>
-          </article>
-        </div>
-        <div class="movie-poster-col">
-          <img class="movie-poster-img" src="img/27.png" alt="Movie poster" />
-          <link rel="stylesheet" href="styles/styles.css">
-        </div>
-        <div class="movie-poster-col">
-          <img class="movie-poster-img" src="img/28.png" alt="Movie poster" />
-          <link rel="stylesheet" href="styles/styles.css">
-        </div>
-        <div class="movie-poster-col">
-          <img class="movie-poster-img" src="img/29.png" alt="Movie poster" />
-          <link rel="stylesheet" href="styles/styles.css">
-        </div>
-      </div>
-    </div>
-  </section>
-  <section>
-    <div class="movie-grid">
-      <div class="movie-row">
-        <div class="movie-col">
-          <img class="movie-poster-img" src="img/30.png" alt="Movie poster" />
-         <link rel="stylesheet" href="styles/styles.css">
-        </div>
-        <div class="movie-poster-col">
-          <img class="movie-poster-img" src="img/31.png" alt="Movie poster" />
-          <link rel="stylesheet" href="styles/styles.css">
-        </div>
-        <div class="movie-poster-col">
-          <img class="movie-poster-img" src="img/32.png" alt="Movie poster" />
-          <link rel="stylesheet" href="styles/styles.css">
-        </div>
-        <div class="movie-poster-col">
-          <img class="movie-poster-img" src="img/33.png" alt="Movie poster" />
-          <link rel="stylesheet" href="styles/styles.css">
-        </div>
-      </div>
-    </div>
-  </section>
-   @Html.ActionLink("повернутися на головну", "Index", "Home", null, new { @class = "back-link" })
-   @* <a href="index.html" class="back-link">повернутися на головну</a> *@
-</main>
+        </article>
+        </div> *@
+
+
+
+        @Html.ActionLink("повернутися на головну", "Index", "Home", null, new { @class = "back-link" })
+        @* <a href="index.html" class="back-link">повернутися на головну</a> *@
+    </main>
 </body>
 </html>

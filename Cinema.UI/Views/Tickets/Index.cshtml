@@ -1,9 +1,9 @@
 ﻿@{
     ViewData["Title"] = "Booking Tickets";
 }
-@using Microsoft.AspNetCore.Identity
 @inject SignInManager<CinemaUser> SignInManager
 @inject UserManager<CinemaUser> UserManager
+@model ICollection<SeanceResponse>
 <!DOCTYPE html>
 <html lang="en" class="wide smoothscroll wow-animation">
 <head>

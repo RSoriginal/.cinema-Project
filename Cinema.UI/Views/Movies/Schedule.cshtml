@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Movie schedule";
 }
+@model ICollection<MovieResponse>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,37 +20,54 @@
         <header class="schedule-header">
             <h1 class="schedule-title">
                 Розклад сеансів<br>
-                У Львові
             </h1>
             <nav class="date-tabs">
-                <a href="#" class="date-tab-today">Сьогодні</a>
-                <a href="#" class="date-tab-tomorrow">Завтра</a>
-                <a href="#" class="date-tab-next-week">На наступному тижні</a>
+                @await Html.PartialAsync("_SortHeader", new ViewDataDictionary(ViewData)
+                {
+                {"FieldOrder", ScheduleSortOptions.Today},
+                {"DisplayName", "Сьогодні"},
+                {"CurrentSortOrder", ViewBag.CurrentSort}
+                })
+                @await Html.PartialAsync("_SortHeader", new ViewDataDictionary(ViewData)
+                {
+                {"FieldOrder", ScheduleSortOptions.Tomorrow},
+                {"DisplayName", "Завтра"},
+                {"CurrentSortOrder", ViewBag.CurrentSort}
+                })
+                @await Html.PartialAsync("_SortHeader", new ViewDataDictionary(ViewData)
+                {
+                {"FieldOrder", ScheduleSortOptions.NextWeek},
+                {"DisplayName", "На наступному тижні"},
+                {"CurrentSortOrder", ViewBag.CurrentSort}
+                })
             </nav>
         </header>
         <main class="schedule-content">
-
-            <section class="selected-date">
-                <time class="selected-date-day">16 травня</time>
-                <span class="selected-date-weekday">Четвер</span>
-            </section>
-
             <section class="movie-list">
                 <article class="movie-item">
                     <div class="movie-details">
-                        <img src="~/img/1.png" alt="" class="movie-poster">
-                        <div class="showtime-list">
-                            <time class="showtime-item">09:00</time>
-                            <time class="showtime-item">11:45</time>
-                        </div>
-                        <img src="~/img/2.png" alt="" class="movie-poster">
-                        <div class="showtime-list">
-                            <time class="showtime-item">11:45</time>
-                        </div>
-                        <img src="~/img/3.png" alt="" class="movie-poster">
-                        <div class="showtime-list">
-                            <time class="showtime-item">14:30</time>
-                        </div>
+                        @{
+                            int SeanceDay = DateTime.UtcNow.Day;
+                            switch(ViewBag.CurrentSort)
+                            {
+                                case ScheduleSortOptions.Tomorrow:
+                                    SeanceDay = DateTime.UtcNow.Day+1;
+                                    break;
+                                case ScheduleSortOptions.NextWeek:
+                                    SeanceDay = DateTime.UtcNow.Day+7;
+                                    break;
+                            }
+                        } 
+                        @foreach (var movie in Model)
+                        {
+                            <img src="@movie.Trailers" alt="" class="movie-poster">
+                            <div class="showtime-list">
+                                @foreach(var seance in movie.Seances?.Where(x => x.AssignedAt.Day == SeanceDay))
+                                {
+                                    <time class="showtime-item">@seance.AssignedAt.Hour:@seance.AssignedAt.Minute</time>
+                                }
+                            </div>
+                        }
                     </div>
                 </article>
                 @* <a href="index.html" class="back-link">повернутися на головну</a> *@
