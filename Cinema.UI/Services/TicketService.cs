@@ -15,10 +15,19 @@ namespace Cinema.Core.ServiceContracts.DTO.Services
 
         public async Task<TicketResponse> CreateTicketAsync(TicketAddRequest ticket)
         {
+            if (!await IsSeatNumberUniqueAsync(ticket.SeanceId, ticket.SeatNumber))
+            {
+                throw new InvalidOperationException("Seat number must be unique for the specified seance.");
+            }
             var dbTicket = ticket.ToTicket();
             await _context.Tickets.AddAsync(dbTicket);
             await _context.SaveChangesAsync();
             return dbTicket.ToTicketResponse();
+        }
+
+        public async Task<bool> IsSeatNumberUniqueAsync(int seanceId, int seatNumber)
+        {
+            return !await _context.Tickets.AnyAsync(t => t.SeanceId == seanceId && t.SeatNumber == seatNumber);
         }
 
         public async Task DeleteTicketAsync(int id)
@@ -45,7 +54,7 @@ namespace Cinema.Core.ServiceContracts.DTO.Services
         }
 
         public async Task<TicketResponse> UpdateTicketAsync(TicketUpdateRequest ticket)
-        {
+        {            
             var dbTicket = ticket.ToTicket();
             _context.Tickets.Update(dbTicket);
             await _context.SaveChangesAsync();
