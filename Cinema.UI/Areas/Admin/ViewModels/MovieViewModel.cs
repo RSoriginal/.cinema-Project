@@ -1,16 +1,15 @@
 ﻿using Cinema.Core.Domain.DTO.Movie;
+using Cinema.Core.Domain.DTO.Seance;
 using Cinema.Core.Domain.Entities;
 using Humanizer.Localisation;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace StoreUI.Areas.Admin.ViewModels
+namespace Cinema.UI.Areas.Admin.ViewModels
 {
     public sealed class MovieViewModel
     {
         public MovieViewModel()
         {
-            Seances = new HashSet<Seance>();
+            this.Seances = new HashSet<SeanceResponse>();
         }
         public int Id { get; set; }
         public string Name { get; set; } = null!;
@@ -20,12 +19,11 @@ namespace StoreUI.Areas.Admin.ViewModels
         public string Genre { get; set; } = null!;
         public DateTime Duration { get; set; }
         public double Rating { get; set; }
-        public ICollection<Seance>? Seances { get; set; }
-
+        public ICollection<SeanceResponse>? Seances { get; set; }
 
         public MovieAddRequest ToMovieAddRequest()
         {
-            return new MovieAddRequest() 
+            return new MovieAddRequest()
             {
                 Name = Name,
                 Description = Description,
@@ -34,7 +32,6 @@ namespace StoreUI.Areas.Admin.ViewModels
                 Genre = Genre,
                 Duration = Duration,
                 Rating = Rating
-                //Seances = this.Seances.Select(x => x.T) TODO
             };
         }
         public MovieUpdateRequest ToMovieUpdateRequest()
@@ -49,7 +46,6 @@ namespace StoreUI.Areas.Admin.ViewModels
                 Genre = Genre,
                 Duration = Duration,
                 Rating = Rating
-                //Seances = this.Seances.Select(x => x.T) TODO
             };
         }
     }

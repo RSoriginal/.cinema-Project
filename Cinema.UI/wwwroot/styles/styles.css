@@ -1,0 +1,172 @@
+.body{
+  margin: 0;
+}
+.main-container {
+    justify-content: flex-end;
+  background-color: #000;
+    display: flex;
+  flex-direction: column;
+  padding: 90px;
+  }
+
+.nav-menu {
+  align-self: center;
+  display: flex;
+  margin-top: 9px;
+  width: 584px;
+  max-width: 100%;
+  gap: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-size: 24px;
+  color: #fff;
+  font-weight: 300;
+  letter-spacing: 0.84px;
+  line-height: 120%;
+}
+
+.films_names {
+    font-family: "Montserrat", sans-serif;
+    text-decoration: none;
+    color: grey;
+    font-weight: bold;
+}
+
+
+
+.nav-item {
+  font-family: Montserrat, sans-serif;
+  flex-grow: 1;
+  flex-basis: auto;
+}
+
+.section-title {
+  display: flex;
+  margin-top: 20px;
+  gap: 8px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  font-size: 48px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+
+
+.section-title-text {
+  font-weight: 300;
+  font-size: 48px;
+  font-style: normal;
+  font-size: 48px;
+  flex-grow: 0;
+  flex-basis: auto;
+  }
+
+  
+ 
+
+.section-divider {
+  border-color: rgba(255, 255, 255, 1);
+  border-style: solid;
+  border-width: 1px;
+  background-color: #fff;
+  width: 1384px;
+  max-width: 100%;
+  height: 1px;
+  margin: auto 0;
+}
+
+.movie-grid {
+  margin-top: 115px;
+}
+
+
+.movie-row {
+  gap: 50px;
+  display: flex;
+}
+
+
+.movie-col {
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+  width: 25%;
+  margin-left: 0px;
+ }
+
+
+.movie-card {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  font-size: 24px;
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 0.84px;
+  line-height: 120%;
+  justify-content: center;
+}
+
+
+.movie-poster {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 0.64;
+  width: 100%;
+  padding-top: 80px;
+}
+
+.movie-poster img {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.movie-title {
+  position: relative;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-family: Montserrat, sans-serif;
+  background: linear-gradient(0deg, #000 0.22%, rgba(0, 0, 0, 0) 99.78%);
+  margin-top: 263px;
+  padding: 129px 55px 38px;
+}
+
+
+.movie-poster-col {
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+  width: 25%;
+  margin-left: 20px;
+}
+
+
+.movie-poster-img {
+  aspect-ratio: 0.64;
+  object-fit: auto;
+  object-position: center;
+  width: 340px;
+  max-width: 100%;
+  flex-grow: 1;
+}
+
+.back-link {
+  align-self: center;
+  margin-top: 90px;
+  padding: 33px 28px;
+  border-radius: 100px;
+  border-image: linear-gradient(to right, #ff0000, #f36600) 1 1 10 stretch; /* Gradient border */
+  border: 1px solid #f36600; /* Fallback solid border */
+      font: 400 20px Montserrat, sans-serif;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  justify-content: center;
+}

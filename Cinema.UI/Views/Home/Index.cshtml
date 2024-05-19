@@ -1,14 +1,158 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Movies Booking";
 }
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<CinemaUser> SignInManager
+@inject UserManager<CinemaUser> UserManager
+<!DOCTYPE html>
+<html lang="en" class="wide smoothscroll wow-animation">
+<head>
+    <!-- Site Title -->
+    <title>Home</title>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    @*@if (User.IsInRole("Admin"))
-    {
+    <!-- Stylesheets -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-    }*@
-    <ul>
-        <li class="nav-item"><a class="manage-link" id="two-factor" asp-area="Admin" asp-controller="Admin" asp-action="Index">Admin</a></li>
-    </ul>
-</div>
+    <!--[if lt IE 10]>
+    <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!-- The Main Wrapper -->
+    <div class="page">
+
+        <!--For older internet explorer-->
+        <div class="old-ie" style='background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;'>
+            <a href="http://windows.microsoft.com/en-US/internet-explorer/..">
+                <img src="images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820"
+                     alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+        </div>
+
+        <!--========================================================
+                                  HEADER
+        =========================================================-->
+        <header class="page-header">
+            <div class="header1">
+                <div class="logo">
+                    <img src="images/logo.png" alt="Логотип">
+                </div>
+                <div class="nav">
+                    @Html.ActionLink("Головна", "Index", "Home", null, new { @class = "nav-link" })
+                    @Html.ActionLink("Фільми", "Index", "Movies", null, new { @class = "nav-link" })
+                    @Html.ActionLink("Розклад", "Schedule", "Movies", null, new { @class = "nav-link" })
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <a href="~/Identity/Account/Manage/Index">
+                            <img src="images/icon_kab.png" alt="Іконка головного кабинета" class="icon2" id="icon">
+                        </a>
+                        <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <img src="images/icon_logout.png" alt="Іконка виходу з кабінета" class="icon2_1" id="icon">
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-controller="Account" asp-action="Login">
+                            <img src="images/icon_kab.png" alt="Иконка головного кабинета" class="icon2" id="icon">
+                        </a>
+                    }
+                </div>
+            </div>
+            <!-- Swiper -->
+
+            <div class="swiper-container swiper-slider" data-height="100vh" data-min-height="320px">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" data-slide-bg="images/image1.png">
+                        <div class="swiper-slide-caption">
+                            <div class="container text-left">
+                                <div class="brand__name">Дюна: Частина друга</div>
+                                <div>
+                                    <p class="textik">
+                                        Екшн, Фантастика, Пригоди, Бойовик
+                                        <img src="images/calendar.png" alt="Іконка календар" class="calendar"> 2024
+                                        <img src="images/clock.png" alt="Іконка календар" class="clock1"> 2 год 46 хв
+                                    </p>
+                                </div>
+                                <div>
+                                    <img class="foto" src="https://cdn.builder.io/api/v1/image/assets/TEMP/ff2103d520209eaa0f9e1a56821b34e5456d6f6f66797ac6023d2d7ee17492ae?" alt="">
+                                </div>
+                                <section class="btn-cord">
+                                    <div class="butoon1">
+                                        @Html.ActionLink("Забронювати квитки", "Index", "Tickets", new { movieId = 1 }, new { @class = "btn2 btn-md1 butoon2" })
+                                        <a href="#" class="btn2 btn-md butoon3">Дивитися трейлер</a>
+                                        @Html.ActionLink("Огляд", "MovieReview", "Home", new { movieId = 1 }, new { @class = "btn2 btn-md butoon3" })
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide" data-slide-bg="images/image2.png">
+                        <div class="swiper-slide-caption">
+                            <div class="container text-left">
+                                <div class="brand__name">Ебіґейл</div>
+                                <div>
+                                    <p class="textik">
+                                        Жахи, Трилер
+                                        <img src="images/calendar.png" alt="Іконка календар" class="calendar"> 2024
+                                        <img src="images/clock.png" alt="Іконка календар" class="clock1"> 1 год 47 хв
+                                    </p>
+                                </div>
+                                <div>
+                                    <img class="foto" src="https://cdn.builder.io/api/v1/image/assets/TEMP/ff2103d520209eaa0f9e1a56821b34e5456d6f6f66797ac6023d2d7ee17492ae?" alt="">
+                                </div>
+                                <section class="btn-cord">
+                                    <div class="butoon1">
+                                        @Html.ActionLink("Забронювати квитки", "BookTicket", "Home", new { movieId = 1 }, new { @class = "btn2 btn-md1 butoon2" })
+                                        <a href="#" class="btn2 btn-md butoon3">Дивитися трейлер</a>
+                                        @Html.ActionLink("Огляд", "MovieReview", "Home", new { movieId = 2 }, new { @class = "btn2 btn-md butoon3" })
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide" data-slide-bg="images/image3.jpg">
+                        <div class="swiper-slide-caption">
+                            <div class="container text-left">
+                                <div class="brand__name">Приборкувачка драконів</div>
+                                <div>
+                                    <p class="textik">
+                                        Пригоди, Анімація, Сімейний
+                                        <img src="images/calendar.png" alt="Іконка календар" class="calendar"> 2024
+                                        <img src="images/clock.png" alt="Іконка календар" class="clock1"> 1 год 38 хв
+                                    </p>
+                                </div>
+                                <div>
+                                    <img class="foto" src="https://cdn.builder.io/api/v1/image/assets/TEMP/ff2103d520209eaa0f9e1a56821b34e5456d6f6f66797ac6023d2d7ee17492ae?" alt="">
+                                </div>
+                                <section class="btn-cord">
+                                    <div class="butoon1">
+                                        @Html.ActionLink("Забронювати квитки", "BookTicket", "Home", new { movieId = 1 }, new { @class = "btn2 btn-md1 butoon2" })
+                                        <a href="#" class="btn2 btn-md butoon3">Дивитися трейлер</a>
+                                        @Html.ActionLink("Огляд", "MovieReview", "Home", new { movieId = 3 }, new { @class = "btn2 btn-md butoon3" })
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Swiper Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+
+        </header>
+    </div>
+
+    <!-- Core Scripts -->
+    <script src="js/core.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

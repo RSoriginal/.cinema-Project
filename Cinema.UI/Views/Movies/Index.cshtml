@@ -1,0 +1,78 @@
+@model IEnumerable<MovieViewModel>
+@{
+    ViewData["Title"] = "Movies";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+</head>
+<body style="margin: 0;">
+    <main class="main-container">
+        <nav class="nav-menu">
+            <div class="nav-item">Зараз у кіно</div>
+            <link rel="stylesheet" href="styles/styles.css">
+        </nav>
+        <section>
+            <header class="section-title">
+                <h2 class="section-title-text">Зараз у кіно</h2>
+                <div class="section-divider"></div>
+                <link rel="stylesheet" href="styles/styles.css">
+            </header>
+        </section>
+
+        <section>
+            <div class="movie-grid">
+                @{
+                    int row = 0;
+                    bool IsLastRow = false;
+                }
+                @while (!IsLastRow)
+                {
+                    <div class="movie-row">
+                        @for (int g = row * 4; g <= (row * 4 + 3); g++)
+                        {
+                            @if (g < Model.Count())
+                            {
+                                <div class="movie-poster-col">
+                                    <img class="movie-poster-img" src="@Model.ElementAt(g).Trailers" alt="Movie poster" />
+                                    <a class="films_names" asp-controller="Home" asp-action="MovieReview" asp-route-movieId="@Model.ElementAt(g).Id">@Model.ElementAt(g).Name</a>
+                                </div>
+                            }
+                            else{
+                                IsLastRow = true;
+                            }
+                        }
+                    </div>
+                    row++;
+                }
+            </div>
+        </section>
+
+
+
+
+
+        @*                 <div class="movie-col">
+        <article class="movie-card">
+        <div class="movie-poster">
+        <img src="img/1.png" alt="movie poster" />
+        <link rel="stylesheet" href="styles/styles.css">
+        </div>
+        </article>
+        </div> *@
+
+
+
+        @Html.ActionLink("повернутися на головну", "Index", "Home", null, new { @class = "back-link" })
+        @* <a href="index.html" class="back-link">повернутися на головну</a> *@
+    </main>
+</body>
+</html>

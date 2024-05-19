@@ -6,7 +6,7 @@
     <title>Cinema Booking Admin</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/StoreUI.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CinemaUI.styles.css" asp-append-version="true" />
 </head>
 <body class="admin-body">
     <header class="header-admin">
@@ -30,7 +30,10 @@
             <ul class="manage-list">
                 <li class="nav-item"><a class="nav-link" asp-area="Admin" asp-controller="Admin" asp-action="Index"><div class="manage-link-div">Overview</div></a></li>
                 <li class="nav-item"><a class="nav-link" asp-area="Admin" asp-controller="Roles" asp-action="Index"><div class="manage-link-div">Roles</div></a></li>
-                <li class="nav-item"><a class="nav-link" asp-area="Admin" asp-controller="Movie" asp-action="Index"><div class="manage-link-div">Movie</div></a></li>
+                <li class="nav-item"><a class="nav-link" asp-area="Admin" asp-controller="Movies" asp-action="Index"><div class="manage-link-div">Movies</div></a></li>
+                <li class="nav-item"><a class="nav-link" asp-area="Admin" asp-controller="Tickets" asp-action="Index"><div class="manage-link-div">Tickets</div></a></li>
+                <li class="nav-item"><a class="nav-link" asp-area="Admin" asp-controller="Seances" asp-action="Index"><div class="manage-link-div">Seances</div></a></li>
+                <li class="nav-item"><a class="nav-link" asp-area="Admin" asp-controller="Propositions" asp-action="Index"><div class="manage-link-div">Propositions</div></a></li>
             </ul>
         </div>
         <div class="col-md-10 ">

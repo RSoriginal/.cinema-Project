@@ -176,6 +176,9 @@ namespace Cinema.Infrastructure.Migrations
                     b.Property<int>("MovieId")
                         .HasColumnType("int");
 
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CinemaUserId");
@@ -229,7 +232,7 @@ namespace Cinema.Infrastructure.Migrations
                     b.Property<int>("SeatNumber")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid?>("UserId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -238,7 +241,7 @@ namespace Cinema.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("tickets");
+                    b.ToTable("Tickets");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -347,46 +350,44 @@ namespace Cinema.Infrastructure.Migrations
             modelBuilder.Entity("Cinema.Core.Domain.Entities.Proposition", b =>
                 {
                     b.HasOne("Cinema.Core.Domain.Entities.CinemaUser", null)
-                        .WithMany("propositions")
+                        .WithMany("Propositions")
                         .HasForeignKey("CinemaUserId");
 
-                    b.HasOne("Cinema.Core.Domain.Entities.Movie", "movie")
+                    b.HasOne("Cinema.Core.Domain.Entities.Movie", "Movie")
                         .WithMany()
                         .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("movie");
+                    b.Navigation("Movie");
                 });
 
             modelBuilder.Entity("Cinema.Core.Domain.Entities.Seance", b =>
                 {
-                    b.HasOne("Cinema.Core.Domain.Entities.Movie", "movie")
-                        .WithMany("seances")
+                    b.HasOne("Cinema.Core.Domain.Entities.Movie", "Movie")
+                        .WithMany("Seances")
                         .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("movie");
+                    b.Navigation("Movie");
                 });
 
             modelBuilder.Entity("Cinema.Core.Domain.Entities.Ticket", b =>
                 {
-                    b.HasOne("Cinema.Core.Domain.Entities.Seance", "seance")
-                        .WithMany("tickets")
+                    b.HasOne("Cinema.Core.Domain.Entities.Seance", "Seance")
+                        .WithMany("Tickets")
                         .HasForeignKey("SeanceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Cinema.Core.Domain.Entities.CinemaUser", "user")
-                        .WithMany("tickets")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Cinema.Core.Domain.Entities.CinemaUser", "User")
+                        .WithMany("Tickets")
+                        .HasForeignKey("UserId");
 
-                    b.Navigation("seance");
+                    b.Navigation("Seance");
 
-                    b.Navigation("user");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -442,19 +443,19 @@ namespace Cinema.Infrastructure.Migrations
 
             modelBuilder.Entity("Cinema.Core.Domain.Entities.CinemaUser", b =>
                 {
-                    b.Navigation("propositions");
+                    b.Navigation("Propositions");
 
-                    b.Navigation("tickets");
+                    b.Navigation("Tickets");
                 });
 
             modelBuilder.Entity("Cinema.Core.Domain.Entities.Movie", b =>
                 {
-                    b.Navigation("seances");
+                    b.Navigation("Seances");
                 });
 
             modelBuilder.Entity("Cinema.Core.Domain.Entities.Seance", b =>
                 {
-                    b.Navigation("tickets");
+                    b.Navigation("Tickets");
                 });
 #pragma warning restore 612, 618
         }

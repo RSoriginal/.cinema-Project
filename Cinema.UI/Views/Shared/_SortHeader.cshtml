@@ -1,0 +1,13 @@
+﻿@if (ViewBag.CurrentSortOrder == ViewBag.FieldOrder)
+{
+    <th>
+        <a class="date-tab-today" href="~/Movies/Schedule?scheduleSort=@(ViewBag.FieldOrder)">@(ViewBag.DisplayName)</a>
+    </th>
+
+}
+else
+{
+    <th>
+        <a class="date-tab-tomorrow" href="~/Movies/Schedule?scheduleSort=@(ViewBag.FieldOrder)">@(ViewBag.DisplayName)</a>
+    </th>
+}

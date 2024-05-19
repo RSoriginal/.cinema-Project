@@ -10,5 +10,6 @@ namespace Cinema.Core.Domain.Entities
         public int MovieId {  get; set; }
         [ForeignKey(nameof(MovieId))]
         public Movie? Movie { get; set; }
+        public Guid? UserId { get; set; }
     }
 }

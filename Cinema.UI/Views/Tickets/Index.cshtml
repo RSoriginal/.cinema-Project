@@ -1,0 +1,288 @@
+﻿@using Cinema.Core.Domain.DTO.Seance
+@using Microsoft.AspNetCore.Identity
+@{
+    ViewData["Title"] = "Booking Tickets";
+}
+@inject SignInManager<CinemaUser> SignInManager
+@inject UserManager<CinemaUser> UserManager
+@model ICollection<SeanceResponse>
+<!DOCTYPE html>
+<html lang="en" class="wide smoothscroll wow-animation">
+<head>
+    <!-- Site Title -->
+    <title>Home</title>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+
+    <!-- Stylesheets -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <!--<link href='//fonts.googleapis.com/css?family=Merriweather:400italic%7CMerriweather+Sans:300,400,700' rel='stylesheet' type='text/css'>-->
+   
+    <link rel="stylesheet" href="css/style.css">
+    @* <link rel="stylesheet" href="css/styles.css"> *@
+    <link rel="stylesheet" href="css/styles2.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+   
+    <style>
+        body {
+            background-image: url('images/bron1.png'); /* Путь к изображению */
+            background-size: cover; /* Растягивает изображение на всю область */
+            background-repeat: no-repeat; /* Запрещает повторять изображение */
+            
+        }
+    </style>
+</head>
+<body>
+
+  
+<!-- The Main Wrapper -->
+<div class="page">
+
+    <header class="page-header">
+            <div class="header1">
+                <div class="logo">
+                    <img src="images/logo.png" alt="Логотип">
+                </div>
+                <div class="nav">
+                    @* <a href="index.html">Головна</a> *@
+                    @* <div class="nav-link"> *@
+                    @Html.ActionLink("Головна", "Index", "Home", null, new { @class = "nav-link" })
+                    @* <a href="films.html">Фільми</a> *@
+                    @* </div> *@
+                    @Html.ActionLink("Фільми", "Index", "Movies", null, new { @class = "nav-link" })
+                    @* <a href="rozkl1.html">Розклад</a> *@
+                    @Html.ActionLink("Розклад", "Schedule", "Movies", null, new { @class = "nav-link" })
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <a href="~/Identity/Account/Manage/Index">
+                            <img src="images/icon_kab.png" alt="Іконка головного кабинета" class="icon2" id="icon">
+                        </a>
+                        <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <img src="images/icon_logout.png" alt="Іконка виходу з кабінета" class="icon2_1" id="icon">
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-controller="Account" asp-action="Login">
+                            <img src="images/icon_kab.png" alt="Иконка головного кабинета" class="icon2" id="icon">
+                        </a>
+                    }
+                </div>
+            </div>
+        
+    </header>
+        
+</div>
+<div class="ekran" >
+  <img src="images/Group 2093.png" alt="ЕКРАН">
+  <style>
+    .container3 {
+      display: flex;
+      max-width: 670px;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 80px;
+    }
+    
+    .row3 {
+      display: flex;
+      width: 100%;
+      max-width: 513px;
+      gap: 16px;
+      padding: 0 20px;
+    }
+    
+    .media (max-width: 991px) {
+      .row {
+        max-width: 100%;
+        flex-wrap: wrap;
+      }
+    }
+    
+    .box {
+      border-radius: 2px;
+      border: 1px solid rgb(255, 255, 255);
+      width: 32px;
+      height: 46px;
+    }
+    
+    .box-wide {
+      width: 33px;
+    }
+    
+    .highlight {
+      border: 1px solid rgba(254, 230, 5, 1);
+      background-color: #fee605;
+    }
+    
+    .lightbox {
+      background-color: rgba(217, 217, 217, 0.3);
+    }
+    
+    .section {
+      align-self: stretch;
+      display: flex;
+      gap: 16px;
+      padding: 0 20px;
+    }
+    
+    .large-gap {
+      margin-top: 35px;
+      gap: 12px;
+    }
+    
+    .media (max-width: 991px) {
+      .section {
+        flex-wrap: wrap;
+      }
+    }
+    
+    .gray-box {
+      background-color: rgba(217, 217, 217, 0.3);
+    }
+    </style>
+    
+    <section class="container3">
+      <div class="row3">
+        <div class="box"></div>
+        <div class="box box-wide"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box box-wide"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box box-wide"></div>
+        <div class="box box-wide"></div>
+        <div class="box"></div>
+      </div>
+      <div class="row3" style="margin-top: 17px;">
+        <div class="box"></div>
+        <div class="box box-wide"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box box-wide"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box box-wide"></div>
+        <div class="box box-wide"></div>
+        <div class="box"></div>
+      </div>
+      <div class="row3" style="margin-top: 16px;">
+        <div class="box"></div>
+        <div class="box box-wide"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box box-wide"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box box-wide"></div>
+        <div class="box box-wide"></div>
+        <div class="box"></div>
+      </div>
+      <div class="row3" style="margin-top: 17px;">
+        <div class="box"></div>
+        <div class="box box-wide"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box box-wide"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box box-wide"></div>
+        <div class="box box-wide"></div>
+        <div class="box"></div>
+      </div>
+      <div class="section" style="margin-top: 17px;">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box box-wide"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box box-wide"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box box-wide"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+      <div class="section" style="margin-top: 17px;">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box box-wide"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box box-wide"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box box-wide"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+      <div class="section large-gap">
+        <div class="row3">
+          <div class="box"></div>
+          <div class="box"></div>
+        </div>
+        <div class="row3">
+          <div class="highlight box-wide"></div>
+          <div class="highlight box-wide"></div>
+        </div>
+        <div class="row3">
+          <div class="box"></div>
+          <div class="box"></div>
+        </div>
+        <div class="row3">
+          <div class="box"></div>
+          <div class="box"></div>
+        </div>
+        <div class="row3">
+          <div class="box"></div>
+          <div class="box"></div>
+        </div>
+      </div>
+    </section>
+  </div>  
+
+  <div class="kvitok">
+    <img class="img22" src="images/Group 2094.png" alt="квиток">
+  </div>
+
+<div class="container22">
+  <div class="days">
+      <div class="day">27<br>Сб</div>
+      <div class="day selected">28<br>Нд</div>
+      <div class="day">29<br>Пн</div>
+      <div class="day">30<br>Вт</div>
+  </div>
+  <div>
+    <p>Час</p>
+  </div>
+  <div class="times">
+      <div class="time selected">09:00</div>
+      <div class="time">11:45</div>
+      <div class="time">14:30</div>
+      <div class="time">17:15</div>
+      <div class="time">19:45</div>
+  </div>
+</div>
+
+<div>
+  <img class="img-bron" src="images/Group 2092.png" alt="Дюна">
+</div>
+
+
+<!-- Core Scripts -->
+<script src="js/core.min.js"></script>
+<!-- Additional Functionality Scripts -->
+<script src="js/script.js"></script>
+<!-- coded by ATOM -->
+</body>
+</html>

@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity.UI.Services;
 using System.Net.Mail;
 using System.Net;
+using System.Runtime.CompilerServices;
 
 namespace StoreUI.Services
 {
-    public sealed class SmtpEmailSender : IEmailSender
+    public sealed class 
+        SmtpEmailSender : IEmailSender
     {
         private readonly int SmtpClientPort;
         private readonly string SmtpClientHost;

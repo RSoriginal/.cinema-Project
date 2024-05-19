@@ -12,7 +12,7 @@ namespace Cinema.Core.Domain.DTO.Ticket
         public decimal Price { get; set; }
         public bool IsAvailable { get; set; }
         public int SeanceId { get; set; }
-        public Guid UserId { get; set; }
+        public Guid? UserId { get; set; }
 
         public override bool Equals(object? obj)
         {
@@ -35,6 +35,10 @@ namespace Cinema.Core.Domain.DTO.Ticket
         {
             return JsonSerializer.Serialize(this);
         }
+        public TicketUpdateRequest ToUpdateRequest()
+        {
+            return new TicketUpdateRequest(SeatNumber, Price, IsAvailable, SeanceId, UserId);
+        }
     }
     public static class TicketExtensions
     {
@@ -46,7 +50,7 @@ namespace Cinema.Core.Domain.DTO.Ticket
                 SeatNumber = ticket.SeatNumber,
                 Price = ticket.Price,
                 IsAvailable = ticket.IsAvailable,
-                SeanceId = ticket.SeanceId,
+                SeanceId = ticket.SeanceId,               
                 UserId = ticket.UserId
             };
         }

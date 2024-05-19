@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "Movie schedule";
+}
+@model ICollection<MovieResponse>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Schedule</title>
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/styles/styles1.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div class="schedule-container">
+        <header class="schedule-header">
+            <h1 class="schedule-title">
+                Розклад сеансів<br>
+            </h1>
+            <nav class="date-tabs">
+                @await Html.PartialAsync("_SortHeader", new ViewDataDictionary(ViewData)
+                {
+                {"FieldOrder", ScheduleSortOptions.Today},
+                {"DisplayName", "Сьогодні"},
+                {"CurrentSortOrder", ViewBag.CurrentSort}
+                })
+                @await Html.PartialAsync("_SortHeader", new ViewDataDictionary(ViewData)
+                {
+                {"FieldOrder", ScheduleSortOptions.Tomorrow},
+                {"DisplayName", "Завтра"},
+                {"CurrentSortOrder", ViewBag.CurrentSort}
+                })
+                @await Html.PartialAsync("_SortHeader", new ViewDataDictionary(ViewData)
+                {
+                {"FieldOrder", ScheduleSortOptions.NextWeek},
+                {"DisplayName", "На наступному тижні"},
+                {"CurrentSortOrder", ViewBag.CurrentSort}
+                })
+            </nav>
+        </header>
+        <main class="schedule-content">
+            <section class="movie-list">
+                <article class="movie-item">
+                    <div class="movie-details">
+                        @{
+                            int SeanceDay = DateTime.UtcNow.Day;
+                            switch(ViewBag.CurrentSort)
+                            {
+                                case ScheduleSortOptions.Tomorrow:
+                                    SeanceDay = DateTime.UtcNow.Day+1;
+                                    break;
+                                case ScheduleSortOptions.NextWeek:
+                                    SeanceDay = DateTime.UtcNow.Day+7;
+                                    break;
+                            }
+                        } 
+                        @foreach (var movie in Model)
+                        {
+                            <img src="@movie.Trailers" alt="" class="movie-poster">
+                            <div class="showtime-list">
+                                @foreach(var seance in movie.Seances?.Where(x => x.AssignedAt.Day == SeanceDay))
+                                {
+                                    <time class="showtime-item">@seance.AssignedAt.Hour:@seance.AssignedAt.Minute</time>
+                                }
+                            </div>
+                        }
+                    </div>
+                </article>
+                @* <a href="index.html" class="back-link">повернутися на головну</a> *@
+                @Html.ActionLink("повернутися на головну", "Index", "Home", null, new { @class = "back-link" })
+            </section>
+
+        </main>
+    </div>
+</body>
+</html>
