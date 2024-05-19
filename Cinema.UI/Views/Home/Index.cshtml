@@ -14,7 +14,6 @@
 
     <!-- Stylesheets -->
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <!--<link href='//fonts.googleapis.com/css?family=Merriweather:400italic%7CMerriweather+Sans:300,400,700' rel='stylesheet' type='text/css'>-->
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,14 +44,9 @@
                     <img src="images/logo.png" alt="Логотип">
                 </div>
                 <div class="nav">
-                    @* <a href="index.html">Головна</a> *@
-                    @* <div class="nav-link"> *@
                     @Html.ActionLink("Головна", "Index", "Home", null, new { @class = "nav-link" })
-                    @* <a href="films.html">Фільми</a> *@
-                    @* </div> *@
                     @Html.ActionLink("Фільми", "Index", "Movies", null, new { @class = "nav-link" })
-                    @* <a href="rozkl1.html">Розклад</a> *@
-                    @Html.ActionLink("Розклад", "Schedule", "Movies", null, new { @class = "nav-link" }) 
+                    @Html.ActionLink("Розклад", "Schedule", "Movies", null, new { @class = "nav-link" })
                     @if (SignInManager.IsSignedIn(User))
                     {
                         <a href="~/Identity/Account/Manage/Index">
@@ -78,8 +72,6 @@
                         <div class="swiper-slide-caption">
                             <div class="container text-left">
                                 <div class="brand__name">Дюна: Частина друга</div>
-
-                                </a>
                                 <div>
                                     <p class="textik">
                                         Екшн, Фантастика, Пригоди, Бойовик
@@ -91,26 +83,20 @@
                                     <img class="foto" src="https://cdn.builder.io/api/v1/image/assets/TEMP/ff2103d520209eaa0f9e1a56821b34e5456d6f6f66797ac6023d2d7ee17492ae?" alt="">
                                 </div>
                                 <section class="btn-cord">
-                                    <!--Кнопка-->
                                     <div class="butoon1">
-                                        @* <a href="#" class="btn2 btn-md1 butoon2">Забронювати квитки</a> *@
-                                        @Html.ActionLink("Забронювати квитки", "Index", "Tickets", null, new { @class = "btn2 btn-md1 butoon2" })
-                                        <a href="#" class="btn2 btn-md butoon3 ">Дивитися трейлер</a>
-                                        @* <a href="#" class="btn2 btn-md butoon3 ">Огляд</a> *@
-                                        @Html.ActionLink("Огляд", "MovieReview", "Home", null, new { @class = "btn2 btn-md butoon3" })
+                                        @Html.ActionLink("Забронювати квитки", "Index", "Tickets", new { movieId = 1 }, new { @class = "btn2 btn-md1 butoon2" })
+                                        <a href="#" class="btn2 btn-md butoon3">Дивитися трейлер</a>
+                                        @Html.ActionLink("Огляд", "MovieReview", "Home", new { movieId = 1 }, new { @class = "btn2 btn-md butoon3" })
                                     </div>
                                 </section>
                             </div>
                         </div>
-
                     </div>
 
                     <div class="swiper-slide" data-slide-bg="images/image2.png">
                         <div class="swiper-slide-caption">
                             <div class="container text-left">
                                 <div class="brand__name">Ебіґейл</div>
-
-                                </a>
                                 <div>
                                     <p class="textik">
                                         Жахи, Трилер
@@ -122,24 +108,20 @@
                                     <img class="foto" src="https://cdn.builder.io/api/v1/image/assets/TEMP/ff2103d520209eaa0f9e1a56821b34e5456d6f6f66797ac6023d2d7ee17492ae?" alt="">
                                 </div>
                                 <section class="btn-cord">
-                                    <!--Кнопка-->
                                     <div class="butoon1">
-                                        @* <a href="#" class="btn2 btn-md1 butoon2">Забронювати квитки</a> *@
-                                        @Html.ActionLink("Забронювати квитки", "Index", "Tickets", null, new { @class = "btn2 btn-md1 butoon2" })
-                                        <a href="#" class="btn2 btn-md butoon3 ">Дивитися трейлер</a>
-                                        @* <a href="#" class="btn2 btn-md butoon3 ">Огляд</a> *@
-                                        @Html.ActionLink("Огляд", "MovieReview", "Home", null, new { @class = "btn2 btn-md butoon3" })
+                                        @Html.ActionLink("Забронювати квитки", "BookTicket", "Home", new { movieId = 1 }, new { @class = "btn2 btn-md1 butoon2" })
+                                        <a href="#" class="btn2 btn-md butoon3">Дивитися трейлер</a>
+                                        @Html.ActionLink("Огляд", "MovieReview", "Home", new { movieId = 2 }, new { @class = "btn2 btn-md butoon3" })
                                     </div>
                                 </section>
                             </div>
                         </div>
                     </div>
+
                     <div class="swiper-slide" data-slide-bg="images/image3.jpg">
                         <div class="swiper-slide-caption">
                             <div class="container text-left">
                                 <div class="brand__name">Приборкувачка драконів</div>
-
-                                </a>
                                 <div>
                                     <p class="textik">
                                         Пригоди, Анімація, Сімейний
@@ -151,13 +133,10 @@
                                     <img class="foto" src="https://cdn.builder.io/api/v1/image/assets/TEMP/ff2103d520209eaa0f9e1a56821b34e5456d6f6f66797ac6023d2d7ee17492ae?" alt="">
                                 </div>
                                 <section class="btn-cord">
-                                    <!--Кнопка-->
                                     <div class="butoon1">
-                                        @* <a href="#" class="btn2 btn-md1 butoon2">Забронювати квитки</a> *@
-                                        @Html.ActionLink("Забронювати квитки", "Index", "Tickets", null, new { @class = "btn2 btn-md1 butoon2" })
-                                        <a href="#" class="btn2 btn-md butoon3 ">Дивитися трейлер</a>
-                                        @* <a href="#" class="btn2 btn-md butoon3 ">Огляд</a> *@
-                                        @Html.ActionLink("Огляд", "MovieReview", "Home", null, new { @class = "btn2 btn-md butoon3" })
+                                        @Html.ActionLink("Забронювати квитки", "BookTicket", "Home", new { movieId = 1 }, new { @class = "btn2 btn-md1 butoon2" })
+                                        <a href="#" class="btn2 btn-md butoon3">Дивитися трейлер</a>
+                                        @Html.ActionLink("Огляд", "MovieReview", "Home", new { movieId = 3 }, new { @class = "btn2 btn-md butoon3" })
                                     </div>
                                 </section>
                             </div>
@@ -169,24 +148,11 @@
                 <div class="swiper-pagination"></div>
             </div>
 
-            <!-- Make a reservation -->
-            <!--<section>
-                <div class="container text-center">
-                    <div class="divider-3 text-primary"></div>
-                    <a href="#" class="btn btn-md btn-primary">make <br>a reservation</a>
-                </div>
-            </section>-->
         </header>
-        <!--========================================================
-                                  CONTENT
-        =========================================================-->
-
     </div>
 
     <!-- Core Scripts -->
     <script src="js/core.min.js"></script>
-    <!-- Additional Functionality Scripts -->
     <script src="js/script.js"></script>
-    <!-- coded by ATOM -->
 </body>
 </html>

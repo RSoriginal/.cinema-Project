@@ -159,9 +159,9 @@ html.boxed .page {
 .container_brows1 {
   position: absolute;
             top: 46%;
-            left: 21%; /* Расстояние от левого края */
+            left: 27%; /* Расстояние от левого края */
             transform: translate(-50%, -50%);
-            padding: 20px;
+            padding: 300px;
 }
 
 .container_brows2 {
@@ -169,7 +169,7 @@ html.boxed .page {
             top: 46%;
             left: 19%; /* Расстояние от левого края */
             transform: translate(-50%, -50%);
-            padding: 20px;
+            padding: 300px;
 }
 
 .container_brows3 {
@@ -200,7 +200,7 @@ html.boxed .page {
 .container_brows1_right {
   position: absolute;
             top: 46%;
-            right: -250px; /* Расстояние от левого края */
+            right: -55px; /* Расстояние от левого края */
             transform: translate(-50%, -50%);
             padding: 30px;
             text-align: right;

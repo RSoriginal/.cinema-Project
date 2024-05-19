@@ -25,6 +25,13 @@
   line-height: 120%;
 }
 
+.films_names {
+    font-family: "Montserrat", sans-serif;
+    text-decoration: none;
+    color: grey;
+    font-weight: bold;
+}
+
 
 
 .nav-item {

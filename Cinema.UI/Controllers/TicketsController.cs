@@ -33,10 +33,10 @@ namespace Cinema.UI.Controllers
             return View();
 
         }
-        public async Task<IActionResult> Index(int? id)
+        public async Task<IActionResult> Index(int? movieId)
         {
-            if (id == null) { return Redirect("/"); }
-            return View((await _movieService.GetMovieAsync(id.Value)).Seances);
+            if (movieId == null) { return Redirect("/"); }
+            return View((await _movieService.GetMovieAsync(movieId.Value)).Seances);
         }
     }
 }

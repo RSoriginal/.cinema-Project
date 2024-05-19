@@ -35,6 +35,17 @@ namespace Cinema.Controllers
             return View((await _movieService.GetMoviesAsync()).First());
         }
 
+/*        public async Task<IActionResult> BookTicket(int movieId)
+        {
+            var seance = (await _movieService.GetMovieAsync(movieId)).Seances.FirstOrDefault();
+            if (seance != null)
+            {
+                return RedirectToAction("Index", "Tickets", new { seanceId = seance.Id });
+            }
+            return NotFound();
+        }*/
+
+
         public IActionResult Privacy()
         {
             return View();

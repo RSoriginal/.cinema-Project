@@ -43,7 +43,7 @@
                             {
                                 <div class="movie-poster-col">
                                     <img class="movie-poster-img" src="@Model.ElementAt(g).Trailers" alt="Movie poster" />
-                                    <a asp-controller="Home" asp-action="MovieReview" asp-route-movieId="@Model.ElementAt(g).Id">@Model.ElementAt(g).Name</a>
+                                    <a class="films_names" asp-controller="Home" asp-action="MovieReview" asp-route-movieId="@Model.ElementAt(g).Id">@Model.ElementAt(g).Name</a>
                                 </div>
                             }
                             else{
