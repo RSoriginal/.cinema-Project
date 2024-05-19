@@ -1,4 +1,5 @@
-﻿using Cinema.Core.Domain.Entities;
+﻿using Cinema.Core.Domain.DTO.Ticket;
+using Cinema.Core.Domain.Entities;
 using Cinema.Core.Domain.ServiceContracts;
 using Cinema.Infrastructure.DBContext;
 using Cinema.UI.Areas.Admin.ViewModels;
@@ -23,17 +24,19 @@ namespace Cinema.UI.Areas.Admin.Controllers
             _seanceService = seanceService;
             _context = context;
         }
+
+        private async Task SetViewBags(int? selectedSeanceId = null, Guid? selectedUserId = null)
+        {
+            ViewBag.SeanceId = new SelectList(await _seanceService.GetSeancesAsync(), "Id", "AssignedAt", selectedSeanceId);
+            ViewBag.UserId = new SelectList(_context.Set<CinemaUser>(), "Id", "UserName", selectedUserId);
+        }
+
         // GET: TicketsController
         public async Task<IActionResult> Index()
         {
             var tickets = await _ticketService.GetTicketsAsync();
-            var ticketViewModels = new List<TicketsViewModel>();
-            foreach (var ticket in tickets)
-            {
-                ticketViewModels.Add(ticket.ToTicketViewModel());
-            }
-            ViewBag.SeanceId = new SelectList(await _seanceService.GetSeancesAsync(), "Id", "AssignedAt");
-            ViewBag.UserId = new SelectList(_context.Set<CinemaUser>(), "Id", "UserName");
+            var ticketViewModels = tickets.Select(ticket => ticket.ToTicketViewModel()).ToList();
+            await SetViewBags();
             return View(ticketViewModels);
         }
 
@@ -52,9 +55,7 @@ namespace Cinema.UI.Areas.Admin.Controllers
         // GET: TicketsController/Create
         public async Task<IActionResult> Create()
         {
-            //ViewData["SeanceId"] = new SelectList(await _seanceService.GetSeancesAsync(), "Id", "Actors");
-            ViewBag.SeanceId = new SelectList(await _seanceService.GetSeancesAsync(), "Id", "AssignedAt");
-            ViewBag.UserId = new SelectList(_context.Set<CinemaUser>(), "Id", "UserName");            
+            await SetViewBags();
             return View();
         }
 
@@ -65,12 +66,32 @@ namespace Cinema.UI.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var ticketAddRequest = ticketsViewModel.ToTicketAddRequest();
-                await _ticketService.CreateTicketAsync(ticketAddRequest);
+                for (int i = 0; i < ticketsViewModel.NumberOfTickets; i++)
+                {
+                    var seatNumber = ticketsViewModel.SeatNumber + i;
+                    var ticketAddRequest = new TicketAddRequest
+                    {
+                        SeatNumber = seatNumber,
+                        Price = ticketsViewModel.Price,
+                        IsAvailable = ticketsViewModel.IsAvailable,
+                        SeanceId = ticketsViewModel.SeanceId,
+                        UserId = ticketsViewModel.UserId
+                    };
+                    try
+                    {
+                        await _ticketService.CreateTicketAsync(ticketAddRequest);
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        ModelState.AddModelError("", $"Error creating ticket for seat number {seatNumber}: {ex.Message}");
+                        await SetViewBags(ticketsViewModel.SeanceId, ticketsViewModel.UserId);
+                        return View(ticketsViewModel);
+                    }
+                }
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.SeanceId = new SelectList(await _seanceService.GetSeancesAsync(), "Id", "AssignedAt", ticketsViewModel.SeanceId);
-            ViewBag.UserId = new SelectList(_context.Set<CinemaUser>(), "Id", "UserName", ticketsViewModel.UserId);
+
+            await SetViewBags(ticketsViewModel.SeanceId, ticketsViewModel.UserId);
             return View(ticketsViewModel);
         }
 
@@ -83,8 +104,7 @@ namespace Cinema.UI.Areas.Admin.Controllers
                 return NotFound();
             }
             var ticketViewModel = ticket.ToTicketViewModel();
-            ViewBag.SeanceId = new SelectList(await _seanceService.GetSeancesAsync(), "Id", "AssignedAt");
-            ViewBag.UserId = new SelectList(_context.Set<CinemaUser>(), "Id", "UserName");
+            await SetViewBags(ticketViewModel.SeanceId, ticketViewModel.UserId);
             return View(ticketViewModel);
         }
 
@@ -103,8 +123,7 @@ namespace Cinema.UI.Areas.Admin.Controllers
                 await _ticketService.UpdateTicketAsync(ticketUpdateRequest);
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.SeanceId = new SelectList(await _seanceService.GetSeancesAsync(), "Id", "AssignedAt");
-            ViewBag.UserId = new SelectList(_context.Set<CinemaUser>(), "Id", "UserName");
+            await SetViewBags(ticketsViewModel.SeanceId, ticketsViewModel.UserId);
             return View(ticketsViewModel);
         }
 
